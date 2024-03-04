@@ -70,7 +70,7 @@ function ResidentPage() {
         await handleClick3();
       }
     }
-    window.location.href = "/stakeHolder";
+    window.location.href = "/shareHolder";
   };
 
   return (

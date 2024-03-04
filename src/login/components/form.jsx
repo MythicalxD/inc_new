@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API } from "../../utils/constants";
 
 function ContactForm() {
   const [formData, setFormData] = useState({
@@ -31,7 +32,7 @@ function ContactForm() {
     };
 
     try {
-      const response = await fetch("http://localhost:5666/auth/register", {
+      const response = await fetch(`${API}auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +61,7 @@ function ContactForm() {
     };
 
     try {
-      const response = await fetch("http://localhost:5666/auth/verify-otp", {
+      const response = await fetch(`${API}auth/verify-otp`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

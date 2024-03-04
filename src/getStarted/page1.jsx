@@ -2,13 +2,12 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../tail.css";
 import { useProductContext } from "../utils/productContext";
+import { API } from "../utils/constants";
 
 function PriceBox() {
   const { selectedProducts, addProduct, createNew } = useProductContext();
 
   const handleCart = async (event) => {
-    event.preventDefault();
-
     try {
       const authToken = document.cookie
         .split("; ")
@@ -23,7 +22,7 @@ function PriceBox() {
 
       const registerData = { items }; // Create the payload
 
-      const response = await fetch("http://localhost:5666/cart/cart/add", {
+      const response = await fetch(`${API}cart/cart/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +38,7 @@ function PriceBox() {
       const data = await response.json();
 
       document.cookie = `token=${data.token}; path=/`;
-      window.location.href = "/resident";
+      //window.location.href = "/resident";
 
       console.log("OTP applied successful", data);
     } catch (error) {
@@ -98,7 +97,6 @@ function PriceBox() {
           </NavLink>
 
           <NavLink
-            to="/login"
             className="flex justify-center items-center"
             onClick={handleClick1}
           >

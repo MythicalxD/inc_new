@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "../tail.css";
 import { useProductContext } from "../utils/productContext";
+import { API } from "../utils/constants";
 
 function UserPage2() {
   const { selectedProducts, addProduct } = useProductContext();

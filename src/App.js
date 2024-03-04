@@ -23,7 +23,7 @@ const App = () => {
           <Route path="/pricedata" element={<PriceBox />}></Route>
           <Route path="/resident" element={<UserPage2 />}></Route>
           <Route path="/residentPage" element={<ResidentPage />}></Route>
-          <Route path="/stakeHolder" element={<StakeHolder />}></Route>
+          <Route path="/shareHolder" element={<StakeHolder />}></Route>
           <Route path="/resource" element={<Company />}></Route>
           <Route path="/article01" element={<Article1 />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
