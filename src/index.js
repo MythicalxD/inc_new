@@ -9,13 +9,15 @@ import "./tail.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+import { ProductProvider } from "./utils/productContext";
+
 ReactDOM.render(
   <>
     <BrowserRouter>
       <Navbar />
-
-      <App />
-
+      <ProductProvider>
+        <App />
+      </ProductProvider>
       <Footer />
     </BrowserRouter>
   </>,
