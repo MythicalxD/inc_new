@@ -13,6 +13,8 @@ import { ProductProvider } from "./utils/productContext";
 import UserPage2 from "./getStarted/page2";
 import ResidentPage from "./getStarted/res-page";
 import StakeHolder from "./getStarted/page3";
+import Months from "./getStarted/page4";
+import Book from "./getStarted/page5";
 
 const App = () => {
   return (
@@ -24,6 +26,8 @@ const App = () => {
           <Route path="/resident" element={<UserPage2 />}></Route>
           <Route path="/residentPage" element={<ResidentPage />}></Route>
           <Route path="/shareHolder" element={<StakeHolder />}></Route>
+          <Route path="/months" element={<Months />}></Route>
+          <Route path="/book" element={<Book />}></Route>
           <Route path="/resource" element={<Company />}></Route>
           <Route path="/article01" element={<Article1 />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>

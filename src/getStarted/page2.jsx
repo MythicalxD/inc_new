@@ -8,12 +8,52 @@ function UserPage2() {
   const { selectedProducts, addProduct } = useProductContext();
   const handleClick = () => {
     addProduct("3", 1); // Example product and quantity
+    handleCart();
     console.log(selectedProducts);
   };
   const handleClick1 = () => {
     addProduct("4", 1); // Example product and quantity
+    handleCart();
     console.log(selectedProducts);
   };
+
+  const handleCart = async (event) => {
+    try {
+      const authToken = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+      // Construct the items array based on selectedProducts
+      const items = selectedProducts.map(({ productId, quantity }) => ({
+        productId,
+        quantity: parseInt(quantity) || 1, // Set quantity to 1 if not provided
+      }));
+
+      const registerData = { items }; // Create the payload
+
+      const response = await fetch(`${API}cart/cart/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify(registerData),
+      });
+
+      if (!response.ok) {
+        throw new Error("cart failed");
+      }
+
+      const data = await response.json();
+      localStorage.setItem("total_ca", data.total);
+
+      console.log("cart applied successful", data);
+    } catch (error) {
+      console.error("Error OTP", error);
+    }
+  };
+
   return (
     <>
       <NavLink to="/pricedata">
@@ -69,6 +109,7 @@ function UserPage2() {
           <NavLink
             to="/nresidentPage"
             className="flex justify-center items-center"
+            onClick={handleClick1}
           >
             <div className="flex flex-col bg-white rounded-xl md:w-[370px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c48] border-3 border-[#ffffff] hover:border-[#0C9663] cursor-pointer">
               <div className="flex justify-center items-center mt-4">

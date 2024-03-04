@@ -8,20 +8,20 @@ function ResidentPage() {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
 
-  let price;
+  let price = parseInt(localStorage.getItem("total_ca"));
 
   if (selectedCountry === "1") {
-    price = 998;
+    price = price + 499;
   } else if (selectedCountry === "2") {
-    price = 998;
+    price = price + 499;
   } else if (selectedCountry === "3") {
     if (selectedOption === "no") {
-      price = 1298 + 799;
+      price = price + 799;
     } else {
-      price = 1298;
+      price = price;
     }
   } else {
-    price = 0; // Handle default case
+    price = parseInt(localStorage.getItem("total_ca")); // Handle default case
   }
 
   const handleClick = () => {

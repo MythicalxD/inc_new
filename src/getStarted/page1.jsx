@@ -7,53 +7,12 @@ import { API } from "../utils/constants";
 function PriceBox() {
   const { selectedProducts, addProduct, createNew } = useProductContext();
 
-  const handleCart = async (event) => {
-    try {
-      const authToken = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        ?.split("=")[1];
-
-      // Construct the items array based on selectedProducts
-      const items = selectedProducts.map(({ productId, quantity }) => ({
-        productId,
-        quantity: quantity || 1, // Set quantity to 1 if not provided
-      }));
-
-      const registerData = { items }; // Create the payload
-
-      const response = await fetch(`${API}cart/cart/add`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${authToken}`,
-        },
-        body: JSON.stringify(registerData),
-      });
-
-      if (!response.ok) {
-        throw new Error("OTP failed");
-      }
-
-      const data = await response.json();
-
-      document.cookie = `token=${data.token}; path=/`;
-      //window.location.href = "/resident";
-
-      console.log("OTP applied successful", data);
-    } catch (error) {
-      console.error("Error OTP", error);
-    }
-  };
-
   const handleClick = () => {
     addProduct("1", 1); // Example product and quantity
-    handleCart();
     console.log(selectedProducts);
   };
   const handleClick1 = () => {
     addProduct("2", 1); // Example product and quantity
-    handleCart();
     console.log(selectedProducts);
   };
   useEffect(() => {
@@ -70,7 +29,7 @@ function PriceBox() {
         </div>
         <div className="flex md:flex-row flex-col md:w-[60%] gap-y-4 md:justify-evenly justify-center md:items-start items-center mt-16">
           <NavLink
-            to="/login"
+            to={"/login"}
             className="flex justify-center items-center"
             onClick={handleClick}
           >
