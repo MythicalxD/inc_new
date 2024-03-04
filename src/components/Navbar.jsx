@@ -80,7 +80,7 @@ function Navbar() {
         </ul>
 
      <div className='navSignIn'>
-    <NavLink class="nav-link " aria-current="page" href="#">Sign In</NavLink>
+    <NavLink to='/login' class="nav-link " aria-current="page" href="#">Sign In</NavLink>
      </div>
            
          

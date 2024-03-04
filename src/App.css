@@ -1,24 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Gelasio:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Strike&family=Russo+One&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Gelasio:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Strike&family=Russo+One&display=swap');
-
-
-*{
+* {
   box-sizing: border-box;
 }
 
-
-:root{
-
-  --primaryColor:#33f28b;
-  --secondaryColor:#3a3939;
-  --thirdColor:#1d233b;
+:root {
+  --primaryColor: #33f28b;
+  --secondaryColor: #3a3939;
+  --thirdColor: #1d233b;
   --fourthColor: #0c9663;
---font1:"Prompt", sans-serif;
---font2: "Bree Serif", serif; 
---font3: "Protest Strike", sans-serif;
-
+  --font1: "Prompt", sans-serif;
+  --font2: "Bree Serif", serif;
+  --font3: "Protest Strike", sans-serif;
 }
-
 
 .dQRPmw {
   width: 100%;
@@ -35,35 +29,29 @@
   padding: 0.3rem;
 }
 
-.dQRPmw p{
-font-weight: 600;
+.dQRPmw p {
+  font-weight: 600;
   color: var(--thirdColor);
 }
 
-
-.logo{
-
+.logo {
   width: 250px;
   margin-right: 3rem;
 }
 
-.navIncpass{
-padding: 0 15rem;
-align-items: center;
-height: 100px;
-background-color: var(--thirdColor)!important;
-
+.navIncpass {
+  padding: 0 15rem;
+  align-items: center;
+  height: 100px;
+  background-color: var(--thirdColor) !important;
 }
 
-a{
-
+a {
   color: white;
   font-weight: 400;
   text-decoration: none;
   font-family: "Prompt", sans-serif;
-
 }
-
 
 li.nav-item {
   padding: 0px 1.6rem 0rem 0.8rem;
@@ -71,63 +59,53 @@ li.nav-item {
   font-size: 17px;
 }
 
-.navSignIn{
-
+.navSignIn {
   padding: 0px 1.6rem 0rem 0.8rem;
   font-weight: 600;
   font-size: 20px;
-
 }
 
-.navBtn{
-
+.navBtn {
   font-weight: 600;
   font-size: 20px;
   background-color: var(--primaryColor);
   color: var(--secondaryColor);
-
 }
 
-.navBtn:hover{
+.navBtn:hover {
   background-color: #2d2c2c;
 }
 
-
-.navBtnMobile{
+.navBtnMobile {
   display: none;
   background-color: var(--primaryColor);
 }
 
 .incHeader {
-padding-top: 6rem;
-padding-left: 6rem;
-padding-right: 6rem;
+  padding-top: 6rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
 }
 
-.boxHeader{
-
+.boxHeader {
   padding: 6rem;
 }
 
-.boxHeader03{
+.boxHeader03 {
   padding-top: 6rem;
   padding-right: 6rem;
   padding-left: 6rem;
 }
 
-.boxHeader04{
-
+.boxHeader04 {
   padding-top: 4rem;
   padding-right: 6rem;
   padding-left: 6rem;
   padding-bottom: 6rem;
 }
 
-
-p{
-
+p {
   font-family: "Prompt", sans-serif;
-
 }
 
 h1 {
@@ -137,7 +115,6 @@ h1 {
   font-family: var(--font4);
   /* font-family: "Protest Strike", sans-serif; */
   color: var(--thirdColor);
-  
 }
 
 h2 {
@@ -147,36 +124,31 @@ h2 {
   color: var(--thirdColor);
 }
 
-h3{
-
+h3 {
   font-size: 36px;
   font-weight: 800;
   font-family: var(--font2);
   color: var(--thirdColor);
-
 }
 
-h4{
-
+h4 {
   font-size: 26px;
   font-weight: 800;
   font-family: var(--font2);
 }
 
-h5{
-
+h5 {
   font-size: 18px;
-  font-family: var(--font2)!important;
-  color: var(--thirdColor)!important;
+  font-family: var(--font2) !important;
+  color: var(--thirdColor) !important;
   font-weight: 600;
 }
 
-button{
+button {
   font-family: var(--font1);
 }
 
-span{
-
+span {
   font-family: var(--font2);
   font-weight: 700;
   color: var(--secondaryColor);
@@ -194,73 +166,55 @@ p.incPara {
   padding-top: 1.5rem;
 }
 
-.incHeaderBtn{
-
+.incHeaderBtn {
   margin-top: 2rem;
   font-size: 30px;
   font-weight: 600;
- 
-
 }
 
-.incHeaderBtn:hover{
+.incHeaderBtn:hover {
   background-color: var(--primaryColor);
   color: var(--secondaryColor);
 }
 
-
-.incHeaderBtnprice{
-
+.incHeaderBtnprice {
   margin-top: 2rem;
   font-size: 30px;
   font-weight: 600;
   background-color: var(--primaryColor);
-
 }
 
-.incHeaderBtnprice:hover{
- background-color: var(--secondaryColor);
+.incHeaderBtnprice:hover {
+  background-color: var(--secondaryColor);
   color: var(--secondaryColor);
 }
 
-.headingLink{
+.headingLink {
   color: var(--fourthColor);
   font-weight: 400;
-
-
 }
-
 
 /* Platform Box  */
 
-
-
 .card.h-100 {
-
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-    border: none;
+  border: none;
   margin: 1.4rem;
 }
-
-
 
 p.card-text {
   font-size: 16px;
 }
 
-.cardSpan{
-
+.cardSpan {
   font-size: 22px;
 }
 
-
-.incvideo{
-
+.incvideo {
   margin-top: 6rem;
-    margin-left: 10rem;
-    margin-right: 10rem;
+  margin-left: 10rem;
+  margin-right: 10rem;
 }
-
 
 .details {
   margin: 1rem !important;
@@ -268,9 +222,7 @@ p.card-text {
 
 /* Price */
 
-
-.pricebtn{
-
+.pricebtn {
   color: rgb(255 255 255);
   min-height: 3rem;
   font-size: 1.2rem;
@@ -280,14 +232,11 @@ p.card-text {
   background: rgb(0 0 0);
   padding: 0.5rem 2rem;
   border-width: 0.1px;
-
 }
 
-.pricebtn:hover{
+.pricebtn:hover {
   border: 0.15rem solid rgb(95, 61, 200);
-
 }
-
 
 /* PricingTable.css */
 
@@ -325,84 +274,62 @@ p.card-text {
   max-height: 100%;
 }
 
-
-
-
-
-.v1{
+.v1 {
   padding: 1rem;
 }
 
-
-.priceMove-1{
-
+.priceMove-1 {
   transform: translateY(-120px);
-
 }
 
-.priceMove-2{
-
+.priceMove-2 {
   transform: translateY(60px);
   transform: translateX(-50px);
   width: 500px;
-
 }
 
-.priceText{
+.priceText {
   font-family: var(--font2);
 }
 
-
 .card.dfAhbD {
-box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px !important;
-border: none;
-padding: 0.6rem;
-background-color: rgb(239, 247, 255);
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px !important;
+  border: none;
+  padding: 0.6rem;
+  background-color: rgb(239, 247, 255);
 }
 
-.price04{
-  font-family: var(--font2)!important;
+.price04 {
+  font-family: var(--font2) !important;
 }
 
-.card.dbs{
+.card.dbs {
   background-color: rgb(255, 255, 255);
   padding: 0.6rem;
 }
 
-
-.priceText{
-
+.priceText {
   font-size: 24px;
   margin: 1.8rem;
   font-weight: 600;
 }
-
-
 
 span.badge.text-bg-danger {
   font-size: 20px;
   margin: 1rem;
 }
 
-
 p.LearnText {
   font-size: 22px;
 }
 
-.btn-light:hover{
-
+.btn-light:hover {
   color: white;
 }
 
-
-.test-2{
-
+.test-2 {
   display: none;
-  
 }
-
-
-
 
 /* //Price Box  */
 
@@ -480,16 +407,10 @@ p.LearnText {
 
 } */
 
-
-
-
-
 .header-container {
-  
   padding: 60px 20px;
   text-align: center;
   color: #000000;
- 
 }
 
 .header-content {
@@ -544,14 +465,11 @@ p.LearnText {
   background: linear-gradient(to right, #23262a, #000000);
 }
 
-
-
-.footer-card{
+.footer-card {
   background-color: rgb(229, 229, 229);
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-
 
 .card-container {
   display: flex;
@@ -567,44 +485,36 @@ p.LearnText {
   margin-bottom: 20px; /* Adjust as needed */
 }
 
-
-
-
-
-
-
-
-
 /* Price Box  */
 
-.pricebox-2{
-
-padding: 2rem;
-border-radius: 24px;
-background-color: whitesmoke;
-box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+.pricebox-2 {
+  padding: 2rem;
+  border-radius: 24px;
+  background-color: whitesmoke;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
-.pricebox-2:hover{
+.pricebox-2:hover {
   background-color: var(--primaryColor);
 }
 
 a.card {
   margin: 6rem;
-
 }
 
-.card{
+.card {
   border: none;
 }
 
-.card-price{
+.card-price {
   font-size: 60px;
   font-family: var(--font2);
   font-weight: 600;
 }
 
-.btnCanada{
+.btnCanada {
   font-size: 44px;
   font-family: var(--font4);
   font-weight: 800;
@@ -612,44 +522,26 @@ a.card {
   color: var(--secondaryColor);
 }
 
-
-
-
-
 @media (max-width: 768px) {
+  a {
+    color: var(--secondaryColor);
+  }
 
- 
- a{
-  color: var(--secondaryColor);
- }
- 
- 
-  .pricebox-2{
-
+  .pricebox-2 {
     padding: 0.2rem;
-    
+
     margin-bottom: 3rem;
     margin-top: 3rem;
+  }
 
+  a.card {
+    margin: 0.2rem;
+  }
 
-    
-    }
-    
-    a.card {
-      margin: 0.2rem;
-    }
-
-
-    .card-price{
-      font-size: 40px;
-    }
-
-   
-
+  .card-price {
+    font-size: 40px;
+  }
 }
-
-
-
 
 @media (min-width: 768px) {
   .card-container {
@@ -659,10 +551,7 @@ a.card {
   .card {
     margin-right: 20px; /* Adjust as needed for spacing between cards on desktop */
   }
-
-
 }
-
 
 /* Media Query for Mobile */
 @media (max-width: 768px) {
@@ -681,45 +570,33 @@ a.card {
   }
   .res-button,
   .nonres-button {
-
     margin: 1rem;
-
   }
 
-  .header-container{
+  .header-container {
     padding: 30px 10px;
   }
 
-
-  .btnCanada{
+  .btnCanada {
     font-size: 24px;
   }
-
 }
-
-
-
-
 
 .pricing-card.p {
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
   padding: 1rem;
 }
 
-
-
-.h100{
+.h100 {
   height: auto !important;
- 
+
   background-color: rgb(242, 252, 242);
-  transition: transform 0.3s ease-in-out ; /* Add smooth transition */
+  transition: transform 0.3s ease-in-out; /* Add smooth transition */
 }
 
-.h100:hover{
-  transform: translateY(-10px) ; /* Move the box 10 pixels above on hover */
+.h100:hover {
+  transform: translateY(-10px); /* Move the box 10 pixels above on hover */
 }
-
-
 
 /* Add this to your CSS file */
 
@@ -738,208 +615,160 @@ a.card {
   }
 }
 
-
-
 /* Mobile  */
 
-
-
-@media screen and (max-width: 768px){
- 
- 
-
-  h1{
-
-    font-size: 30px;
-  }
-  
-  h2{
+@media screen and (max-width: 768px) {
+  h1 {
     font-size: 30px;
   }
 
-  h3{
+  h2 {
+    font-size: 30px;
+  }
+
+  h3 {
     font-size: 27px;
-
   }
 
-  h4{
+  h4 {
     font-size: 17px;
     font-weight: 600;
   }
 
-
-  h5{
+  h5 {
     font-size: 14px;
   }
-  .navIncpass{
-
+  .navIncpass {
     padding: 0;
   }
 
-  .incHeader{
+  .incHeader {
     padding: 0;
     font-size: 20px;
   }
 
-  p.incPara{
-
+  p.incPara {
     font-size: 16px;
   }
 
   div#navbarSupportedContent {
     background-color: white;
     padding: 1rem;
-}
+  }
 
-.boxHeader04{
-  padding: 0;
-}
+  .boxHeader04 {
+    padding: 0;
+  }
 
-.boxHeader03{
-  padding: 0;
+  .boxHeader03 {
+    padding: 0;
+  }
 
-}
+  .header-content {
+    padding: 0.4rem;
+  }
 
-.header-content{
+  .navBtn {
+    display: none;
+  }
 
-  padding: 0.4rem;
-}
+  .boxHeader {
+    padding: 0;
+    overflow-x: hidden;
+  }
 
-.navBtn{
-  display: none;
-}
+  .card.h-100 {
+    margin: 2.4rem;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  }
 
-.boxHeader{
-  padding: 0;
-  overflow-x: hidden;
-}
+  .card-body {
+    flex: 0;
+  }
 
+  .h-100 {
+    height: auto;
+  }
 
-.card.h-100 {
- 
-  margin: 2.4rem;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-}
+  .col-12 {
+    width: 50%;
+  }
 
-.card-body{
-
-  flex: 0;
-}
-
-.h-100{
-  height: auto;
-}
-
-
-.col-12{
-
-  width: 50%;
-}
-
-.incvideo{
-  
+  .incvideo {
     margin-top: 6rem;
     margin-left: 0.2rem;
     margin-right: 0.2rem;
     margin-bottom: 6rem;
+  }
 
+  .v1 {
+    padding: 0.4rem;
+  }
+
+  .priceMove-1 {
+    flex: none;
+    transform: none;
+  }
+
+  .priceMove-2 {
+    transform: none;
+  }
+
+  span.badge.text-bg-danger {
+    font-size: 16px;
+    margin: 1rem;
+  }
+
+  .price-box-1 {
+    padding: 2rem;
+  }
+
+  .card.dfAhbD {
+    margin-top: 2rem;
+  }
+
+  .test-1 {
+    display: none;
+  }
+
+  .test-2 {
+    display: flex;
+  }
+
+  .sat-1 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 4rem;
+  }
+
+  .sat-4 {
+    width: 100%;
+  }
+
+  .sat-6 {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo {
+    width: 125px;
+  }
+
+  .navBtnMobile {
+    display: flex;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .navbar-toggler-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+  }
+
+  .navbar-toggler {
+    background-color: white;
+  }
 }
-
-.v1{
-  padding: 0.4rem;
-}
-
-
-
-
-
-
-.priceMove-1{
-flex: none;
-  transform: none;
-
-}
-
-.priceMove-2{
-transform: none;
-
-
-}
-
-
-span.badge.text-bg-danger {
-  font-size: 16px;
-  margin: 1rem;
-}
-
-
-.price-box-1{
-  padding: 2rem;
-}
-
-.card.dfAhbD {
-
-  margin-top: 2rem;
-
-}
-
-
-.test-1{
-
- display: none;
-}
-
-.test-2{
-  display: flex;
-}
-
-
-.sat-1{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  padding: 4rem;
-}
-
-.sat-4{
-
-width: 100%;
-
-
-}
-
-.sat-6{
-
-  width: 100%;
-  align-items: center;
-  text-align: center;
-
-}
-
-.logo{
-
-  width: 125px;
-}
-
-.navBtnMobile{
-  display: flex;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-
-.navbar-toggler-icon {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
- 
-}
-
-.navbar-toggler{
-  background-color: white;
-}
-
-
-
-}
-  
