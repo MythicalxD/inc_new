@@ -152,7 +152,7 @@ function ResidentPage() {
 
       const data = await response.json();
       localStorage.setItem("total_ca", data.total);
-      window.location.href = "/resident";
+      window.location.href = "/priceData";
 
       console.log("back successful", data);
     } catch (error) {

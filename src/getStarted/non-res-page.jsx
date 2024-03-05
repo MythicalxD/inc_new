@@ -125,7 +125,7 @@ function NonResidentPage() {
       }
 
       const data = await response.json();
-      window.location.href = "/resident";
+      window.location.href = "/priceData";
 
       console.log("back successful", data);
     } catch (error) {
