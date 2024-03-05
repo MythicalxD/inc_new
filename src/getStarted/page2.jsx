@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../tail.css";
 import { useProductContext } from "../utils/productContext";
@@ -6,19 +6,20 @@ import { API } from "../utils/constants";
 
 function UserPage2() {
   const { selectedProducts, addProduct, createNew } = useProductContext();
+  const [s, sset] = useState("1");
 
   const handleClick = async () => {
-    addProduct("3", 1); // Example product and quantity
+    await addProduct("3", 1); // Example product and quantity
     console.log(selectedProducts);
+    sset("1");
     await handleCart();
-    window.location.href = "/residentPage";
   };
 
   const handleClick1 = async () => {
     await addProduct("4", 1); // Example product and quantity
     console.log(selectedProducts);
+    sset("2");
     await handleCart();
-    window.location.href = "/nonresidentPage";
   };
 
   const handleCart = async (event) => {
@@ -51,6 +52,12 @@ function UserPage2() {
 
       const data = await response.json();
       localStorage.setItem("total_ca", data.total);
+
+      if (s === "1") {
+        window.location.href = "/residentPage";
+      } else if (s === "2") {
+        window.location.href = "/nonresidentPage";
+      }
 
       console.log("cart applied successful", data);
     } catch (error) {

@@ -135,7 +135,7 @@ function NonResidentPage() {
 
   return (
     <>
-      <div>
+      <div onClick={backButton}>
         <img
           src="img/back.png"
           alt="back"

@@ -15,7 +15,43 @@ function PriceBox() {
     addProduct("2", 1); // Example product and quantity
     console.log(selectedProducts);
   };
+
+  const clearCart = async () => {
+    const selectedProducts =
+      JSON.parse(localStorage.getItem("selectedProducts")) || [];
+    const productIds = selectedProducts.map((item) => item.productId);
+    const dataToSend = { productIds };
+
+    try {
+      const authToken = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+      const response = await fetch(`${API}cart/cart`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify(dataToSend),
+      });
+
+      if (!response.ok) {
+        throw new Error("back failed");
+      }
+
+      const data = await response.json();
+      localStorage.setItem("total_ca", data.total);
+
+      console.log("back successful", data);
+    } catch (error) {
+      console.error("Error back", error);
+    }
+  };
+
   useEffect(() => {
+    clearCart();
     createNew(); // Call createNew when the component mounts
   }, []); // Empty dependency array ensures it only runs once
   return (
