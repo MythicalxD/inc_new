@@ -170,6 +170,8 @@ p.incPara {
   margin-top: 2rem;
   font-size: 30px;
   font-weight: 600;
+  color: #000000;
+  background-color: #33f28b;
 }
 
 .incHeaderBtn:hover {

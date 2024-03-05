@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom";
 import "../tail.css";
 import { useProductContext } from "../utils/productContext";
 import { API } from "../utils/constants";
+import StripePaymentWidget from "./payment";
 
 function Book() {
   const { selectedProducts, addProduct } = useProductContext();
+  const [stripePromise, setStripePromise] = useState(null);
 
   const handleClick = () => {
     addProduct("3", 1); // Example product and quantity
@@ -18,7 +20,8 @@ function Book() {
     console.log(selectedProducts);
   };
 
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("yes");
+  const [clientSecret, setClientSecret] = useState(false);
 
   const handleOptionClick = (optionValue) => {
     setSelectedOption(optionValue);
@@ -33,39 +36,6 @@ function Book() {
     // Clear the coupon code input after applying the coupon
     setCouponCode("");
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const authToken = document.cookie
-          .split("; ")
-          .find((row) => row.startsWith("token="))
-          ?.split("=")[1];
-
-        const headers = {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${authToken}`,
-        };
-
-        const response = await fetch(`${API}cart/cart/summary`, {
-          method: "GET", // Assuming you're fetching cart summary with a GET request
-          headers: headers,
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch cart summary");
-        }
-
-        const data = await response.json();
-        setCartItems(data.items);
-        setTotal(data.total);
-      } catch (error) {
-        console.error("Error fetching cart summary:", error);
-      }
-    };
-
-    fetchData();
-  }, []); // Empty dependency array means this effect runs only once after initial render
 
   const handleCart = async (event) => {
     try {
@@ -104,21 +74,126 @@ function Book() {
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const authToken = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("token="))
+          ?.split("=")[1];
+
+        const headers = {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        };
+
+        const response = await fetch(`${API}cart/cart/summary`, {
+          method: "GET", // Assuming you're fetching cart summary with a GET request
+          headers: headers,
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch cart summary");
+        }
+
+        const data = await response.json();
+        setCartItems(data.items);
+        setTotal(data.total);
+      } catch (error) {
+        console.error("Error fetching cart summary:", error);
+        window.location.href = "/pricedata";
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const checkout = async () => {
+    const registerData = {
+      payInFull: selectedOption === "yes" ? true : false,
+    };
+
+    try {
+      const authToken = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+      const response = await fetch(`${API}cart/cart/checkout`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify(registerData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      const responseData = await response.json();
+
+      // Assuming responseData contains the client secret
+      const clientSecret = responseData.clientSecret;
+      setClientSecret(clientSecret);
+
+      console.log(clientSecret);
+    } catch (error) {
+      console.error("Error during checkout:", error);
+    }
+  };
+
   const handleSubmit = async () => {
     if (selectedOption === "") {
       return;
     }
   };
 
+  const backButton = async () => {
+    const selectedProducts =
+      JSON.parse(localStorage.getItem("selectedProducts")) || [];
+    const productIds = selectedProducts.map((item) => item.productId);
+    const dataToSend = { productIds };
+
+    try {
+      const authToken = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+      const response = await fetch(`${API}cart/cart/items`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify(dataToSend),
+      });
+
+      if (!response.ok) {
+        throw new Error("back failed");
+      }
+
+      const data = await response.json();
+      localStorage.setItem("total_ca", data.total);
+      window.location.href = "/months";
+
+      console.log("back successful", data);
+    } catch (error) {
+      console.error("Error back", error);
+    }
+  };
+
   return (
     <>
-      <NavLink to="/months">
+      <div onClick={backButton}>
         <img
           src="img/back.png"
           alt="back"
           className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
         />
-      </NavLink>
+      </div>
       <div className="bg-[#F6FAFD] flex flex-col items-center">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           Checkout
@@ -164,11 +239,15 @@ function Book() {
                 • Pay 30% to reserve your company.
               </div>
               <div className="flex font-Bree text-[#1D233B] text-md mt-[10px] md:w-[60% w-[90%]">
-                • Pay 50% for name confirmation.
+                • pay 50% after name confirmation
               </div>
               <div className="flex font-Bree text-[#1D233B] text-md mt-[10px] md:w-[60% w-[90%]">
                 • Pay the remaining 20% after incorporation.
               </div>
+
+              {clientSecret != "" && (
+                <StripePaymentWidget clientSecret={clientSecret} />
+              )}
             </div>
           </div>
           <div className="flex w-[50%]">
@@ -211,7 +290,7 @@ function Book() {
               <div className="flex w-full justify-end items-end">
                 <div
                   className="flex bg-[#33F28B] rounded-md p-2 px-4 w-[40%] mt-12 text-center justify-center items-center font-Bree text-[#1D233B] cursor-pointer hover:bg-[#40c47e]"
-                  onClick={handleSubmit}
+                  onClick={checkout}
                 >
                   PAY NOW
                 </div>
