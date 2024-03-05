@@ -123,7 +123,7 @@ function Months() {
       localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
     }
 
-    if (selectedOption === "1") {
+    if (selectedOption1 === "1") {
       const selectedProducts =
         JSON.parse(localStorage.getItem("selectedProducts")) || [];
       const updatedProducts = [
