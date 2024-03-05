@@ -5,7 +5,7 @@ import { useProductContext } from "../utils/productContext";
 import { API } from "../utils/constants";
 
 function UserPage2() {
-  const [s, sset] = useState("");
+  const [s, sset] = useState("1");
 
   const handleClick = async () => {
     const selectedProducts =
