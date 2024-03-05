@@ -88,7 +88,7 @@ function UserPage2() {
           className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
         />
       </NavLink>
-      <div className="bg-[#F6FAFD] h-screen flex flex-col items-center">
+      <div className="bg-[#F6FAFD] flex flex-col items-center">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           Let’s Get Your Business Started
         </div>
@@ -132,7 +132,7 @@ function UserPage2() {
 
           <NavLink
             to="/nonresidentPage"
-            className="flex justify-center items-center"
+            className="flex justify-center items-center mb-8"
             onClick={handleClick1}
           >
             <div className="flex flex-col bg-white rounded-xl md:w-[370px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c48] border-3 border-[#ffffff] hover:border-[#0C9663] cursor-pointer">

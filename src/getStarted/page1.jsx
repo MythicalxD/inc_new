@@ -56,7 +56,7 @@ function PriceBox() {
   }, []); // Empty dependency array ensures it only runs once
   return (
     <>
-      <div className="bg-[#F6FAFD] h-screen flex flex-col items-center">
+      <div className="bg-[#F6FAFD] flex flex-col items-center">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           Let’s Get Started
         </div>
@@ -92,7 +92,7 @@ function PriceBox() {
           </NavLink>
 
           <NavLink
-            className="flex justify-center items-center"
+            className="flex justify-center items-center mb-8"
             onClick={handleClick1}
             to={"/login"}
           >

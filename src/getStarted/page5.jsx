@@ -199,8 +199,8 @@ function Book() {
           Checkout
         </div>
 
-        <div className="flex w-screen">
-          <div className="flex w-[50%]">
+        <div className="flex md:flex-row flex-col w-screen">
+          <div className="flex md:w-[50%]">
             <div className="flex flex-col mt-12 items-start justify-start ml-12">
               <div className="flex">
                 <label
@@ -250,7 +250,7 @@ function Book() {
               )}
             </div>
           </div>
-          <div className="flex w-[50%]">
+          <div className="flex md:w-[50%]">
             <div className="flex flex-col mt-12 m-12 w-full p-4 rounded-2xl bg-white items-start justify-start ml-12">
               {cartItems.map((item, index) => (
                 <div
@@ -289,7 +289,7 @@ function Book() {
               )}
               <div className="flex w-full justify-end items-end">
                 <div
-                  className="flex bg-[#33F28B] rounded-md p-2 px-4 w-[40%] mt-12 text-center justify-center items-center font-Bree text-[#1D233B] cursor-pointer hover:bg-[#40c47e]"
+                  className="flex bg-[#33F28B] rounded-md p-2 px-4 md:w-[40%] mt-12 text-center justify-center items-center font-Bree text-[#1D233B] cursor-pointer hover:bg-[#40c47e]"
                   onClick={checkout}
                 >
                   PAY NOW
