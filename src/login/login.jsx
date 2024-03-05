@@ -17,7 +17,7 @@ function LoginPage() {
     // Check if authToken is defined and not null (which means the 'token' cookie exists)
     if (authToken) {
       console.log("Token exists:", authToken);
-      window.location.href = "/resident";
+      //window.location.href = "/resident";
       // Perform actions with the token if needed
     }
   }, []); // This effect runs once on component mount

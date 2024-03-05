@@ -8,7 +8,7 @@ let price1 = 0;
 let price2 = 0;
 let price3 = 0;
 
-function StakeHolder() {
+function StakeHolderNonResident() {
   const {
     selectedProducts,
     addProduct,
@@ -18,7 +18,7 @@ function StakeHolder() {
   } = useProductContext();
 
   const handleClick = (num) => {
-    addProduct("13", num); // Example product and quantity
+    addProduct("12", num); // Example product and quantity
     console.log(selectedProducts);
   };
   const handleClick1 = () => {
@@ -26,7 +26,7 @@ function StakeHolder() {
     console.log(selectedProducts);
   };
   const handleClick3 = (num) => {
-    addProduct("13", num); // Example product and quantity
+    addProduct("12", num); // Example product and quantity
     console.log(selectedProducts);
   };
 
@@ -46,7 +46,7 @@ function StakeHolder() {
   // Event handler for when the dropdown value changes
   const handleSelectChange = async (event) => {
     setSelectedValue(event.target.value);
-    price1 = parseInt(event.target.value) * 150;
+    price1 = parseInt(event.target.value) * 350;
     calcAmount();
   };
 
@@ -64,7 +64,7 @@ function StakeHolder() {
 
   const handleSelectChange3 = (event) => {
     setSelectedValue3(event.target.value);
-    price3 = parseInt(event.target.value) * 150;
+    price3 = parseInt(event.target.value) * 350;
     calcAmount();
   };
 
@@ -82,7 +82,7 @@ function StakeHolder() {
       JSON.parse(localStorage.getItem("selectedProducts")) || [];
     const updatedProducts = [
       ...selectedProducts,
-      { productId: "13", quantity: parseInt(selectedValue) },
+      { productId: "12", quantity: parseInt(selectedValue) },
     ];
     localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
     if (selectedValue1 === "750") {
@@ -99,7 +99,7 @@ function StakeHolder() {
         JSON.parse(localStorage.getItem("selectedProducts")) || [];
       const updatedProducts = [
         ...selectedProducts,
-        { productId: "13", quantity: parseInt(selectedValue3) },
+        { productId: "12", quantity: parseInt(selectedValue3) },
       ];
       localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
     }
@@ -150,7 +150,7 @@ function StakeHolder() {
 
   return (
     <>
-      <NavLink to="/residentPage">
+      <NavLink to="/nonresidentPage">
         <img
           src="img/back.png"
           alt="back"
@@ -183,10 +183,10 @@ function StakeHolder() {
                 className="w-[300px] rounded shadow-sm p-2 mt-4"
               >
                 <option value="">Select...</option>
-                <option value="1">1x $150 CAD</option>
-                <option value="2">2x $150 CAD</option>
-                <option value="3">3x $150 CAD</option>
-                <option value="4">4x $150 CAD</option>
+                <option value="1">1x $350 CAD</option>
+                <option value="2">2x $350 CAD</option>
+                <option value="3">3x $350 CAD</option>
+                <option value="4">4x $350 CAD</option>
               </select>{" "}
             </div>
             <div className="flex flex-col justify-start items-start mt-4">
@@ -239,10 +239,10 @@ function StakeHolder() {
                   className="w-[300px] rounded shadow-sm p-2 mt-4"
                 >
                   <option value="">Select...</option>
-                  <option value="1">1x 150 CAD</option>
-                  <option value="2">2x 150 CAD</option>
-                  <option value="3">3x 150 CAD</option>
-                  <option value="4">4x 150 CAD</option>
+                  <option value="2">2x 350 CAD</option>
+                  <option value="1">1x 350 CAD</option>
+                  <option value="3">3x 350 CAD</option>
+                  <option value="4">4x 350 CAD</option>
                 </select>
               </div>
             )}
@@ -266,4 +266,4 @@ function StakeHolder() {
   );
 }
 
-export default StakeHolder;
+export default StakeHolderNonResident;

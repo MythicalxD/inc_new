@@ -1,29 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../tail.css";
 import { useProductContext } from "../utils/productContext";
 import { API } from "../utils/constants";
 
+let price1 = 0;
+let price2 = 0;
+
 function Months() {
   const { selectedProducts, addProduct } = useProductContext();
-  const handleClick = () => {
-    addProduct("3", 1); // Example product and quantity
-    handleCart();
-    console.log(selectedProducts);
-  };
-  const handleClick1 = () => {
-    addProduct("4", 1); // Example product and quantity
-    handleCart();
-    console.log(selectedProducts);
+
+  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption1, setSelectedOption1] = useState("");
+
+  const handleOptionClick = (optionValue) => {
+    setSelectedOption(optionValue);
+    if (optionValue === "1") {
+      price1 = 399;
+    } else if (optionValue === "2") {
+      price1 = 599;
+    } else if (optionValue === "3") {
+      price1 = 899;
+    } else if (optionValue === "34") {
+      price1 = 0;
+    }
+    calcAmount();
   };
 
-  let price;
-
-  const handleSubmit = async () => {
-    window.location.href = "/shareHolder";
+  const handleOptionClick1 = (optionValue) => {
+    setSelectedOption1(optionValue);
+    if (optionValue === "1") {
+      price2 = 399;
+    } else if (optionValue === "2") {
+      price2 = 0;
+    }
+    calcAmount();
   };
 
-  const handleCardClick = (countryValue) => {};
+  const [price, setPrice] = useState(
+    parseInt(localStorage.getItem("total_ca"))
+  );
+  const [priceNew, setPriceNew] = useState(
+    parseInt(localStorage.getItem("total_ca"))
+  );
+
+  const calcAmount = () => {
+    setPriceNew(price + price1 + price2);
+  };
 
   const handleCart = async (event) => {
     try {
@@ -33,6 +56,10 @@ function Months() {
         ?.split("=")[1];
 
       // Construct the items array based on selectedProducts
+
+      const selectedProducts =
+        JSON.parse(localStorage.getItem("selectedProducts")) || [];
+
       const items = selectedProducts.map(({ productId, quantity }) => ({
         productId,
         quantity: parseInt(quantity) || 1, // Set quantity to 1 if not provided
@@ -62,6 +89,50 @@ function Months() {
     }
   };
 
+  const handleSubmit = async () => {
+    localStorage.setItem("selectedProducts", JSON.stringify([]));
+    if (selectedOption === "1") {
+      const selectedProducts =
+        JSON.parse(localStorage.getItem("selectedProducts")) || [];
+      const updatedProducts = [
+        ...selectedProducts,
+        { productId: "15", quantity: 1 },
+      ];
+      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+    }
+    if (selectedOption === "2") {
+      const selectedProducts =
+        JSON.parse(localStorage.getItem("selectedProducts")) || [];
+      const updatedProducts = [
+        ...selectedProducts,
+        { productId: "156", quantity: 1 },
+      ];
+      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+    }
+    if (selectedOption === "3") {
+      const selectedProducts =
+        JSON.parse(localStorage.getItem("selectedProducts")) || [];
+      const updatedProducts = [
+        ...selectedProducts,
+        { productId: "17", quantity: 1 },
+      ];
+      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+    }
+
+    if (selectedOption === "1") {
+      const selectedProducts =
+        JSON.parse(localStorage.getItem("selectedProducts")) || [];
+      const updatedProducts = [
+        ...selectedProducts,
+        { productId: "18", quantity: 1 },
+      ];
+      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+    }
+
+    await handleCart();
+    window.location.href = "/book";
+  };
+
   return (
     <>
       <NavLink to="/shareHolder">
@@ -82,12 +153,18 @@ function Months() {
           costs of office space rentals.
         </div>
         <div className="flex flex-col md:w-[60%] gap-y-8 md:justify-evenly justify-center md:items-start items-center mt-16">
-          <div className="flex justify-evenly gap-x-12">
-            <NavLink
+          <div className="flex md:flex-row flex-col justify-evenly gap-x-12">
+            <div
               className="flex justify-center items-center"
-              onClick={handleClick}
+              onClick={() => handleOptionClick("1")}
             >
-              <div className="flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-[#F4FCF3] border-3 cursor-pointer">
+              <div
+                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-[#F4FCF3] border-3 cursor-pointer ${
+                  selectedOption === "1"
+                    ? "border-[#0C9663] bg-[#e7ffe3]"
+                    : "border-[#F4FCF3] bg-[#F4FCF3]"
+                }`}
+              >
                 <div className="flex flex-col">
                   <div className="flex justify-center items-center mt-0">
                     <p className="flex font-Bree text-[#0C9663] text-3xl">
@@ -106,13 +183,19 @@ function Months() {
                   className="w-[150px] cursor-pointer m-4 ml-8"
                 />
               </div>
-            </NavLink>
+            </div>
 
             <NavLink
               className="flex justify-center items-center"
-              onClick={handleClick}
+              onClick={() => handleOptionClick("2")}
             >
-              <div className="flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-[#F4FCF3] border-3 cursor-pointer">
+              <div
+                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-[#F4FCF3] border-3 cursor-pointer ${
+                  selectedOption === "2"
+                    ? "border-[#0C9663] bg-[#e7ffe3]"
+                    : "border-[#F4FCF3] bg-[#F4FCF3]"
+                }`}
+              >
                 <div className="flex flex-col">
                   <div className="flex justify-center items-center mt-0">
                     <p className="flex font-Bree text-[#0C9663] text-3xl">
@@ -134,12 +217,18 @@ function Months() {
             </NavLink>
           </div>
 
-          <div className="flex gap-x-12">
+          <div className="flex md:flex-row flex-col gap-x-12">
             <NavLink
               className="flex justify-center items-center"
-              onClick={handleClick}
+              onClick={() => handleOptionClick("3")}
             >
-              <div className="flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-[#F4FCF3] border-3 cursor-pointer">
+              <div
+                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-[#F4FCF3] border-3 cursor-pointer ${
+                  selectedOption === "3"
+                    ? "border-[#0C9663] bg-[#e7ffe3]"
+                    : "border-[#F4FCF3] bg-[#F4FCF3]"
+                }`}
+              >
                 <div className="flex flex-col">
                   <div className="flex justify-center items-center mt-0">
                     <p className="flex font-Bree text-[#0C9663] text-3xl">
@@ -162,9 +251,15 @@ function Months() {
 
             <NavLink
               className="flex justify-center items-center"
-              onClick={handleClick}
+              onClick={() => handleOptionClick("4")}
             >
-              <div className="flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] h-[170px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-[#F4FCF3] border-3 cursor-pointer">
+              <div
+                className={`flex flex-row bg-[#F4FCF3] h-[170px] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-[#F4FCF3] border-3 cursor-pointer ${
+                  selectedOption === "4"
+                    ? "border-[#0C9663] bg-[#e7ffe3]"
+                    : "border-[#F4FCF3] bg-[#F4FCF3]"
+                }`}
+              >
                 <div className="flex flex-col">
                   <p className="text-black font-Bree text-xl ml-2">
                     No, thanks. I have my own office space.
@@ -174,6 +269,9 @@ function Months() {
             </NavLink>
           </div>
         </div>
+
+        <div className="flex h-[1px] w-full bg-zinc-300 mt-[50px]"></div>
+
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           Corporate Minute Book
         </div>
@@ -182,8 +280,12 @@ function Months() {
         </div>
         <div className="flex flex-col md:w-[60%] gap-y-8 md:justify-evenly justify-center md:items-start items-center mt-0">
           <div
-            className="flex flex-col w-full m-4 p-4 bg-[#F4FCF3] rounded-lg shadow hover:border-green-700 border-2 cursor-pointer"
-            onClick={() => handleCardClick("1")}
+            className={`flex flex-col w-full m-4 p-4 bg-[#F4FCF3] rounded-lg shadow hover:border-green-700 border-2 cursor-pointer ${
+              selectedOption1 === "1"
+                ? "border-[#0C9663] bg-[#e7ffe3]"
+                : "border-[#F4FCF3] bg-[#F4FCF3]"
+            }`}
+            onClick={() => handleOptionClick1("1")}
           >
             <div className="flex">
               <div className="font-Bree text-[#1D233B] text-3xl ml-2 mr-4">
@@ -273,8 +375,12 @@ function Months() {
         </div>
         <div className="flex flex-col md:w-[60%] gap-y-8 md:justify-evenly justify-center md:items-start items-center ">
           <div
-            className="flex flex-col w-full m-4 p-4 bg-[#F4FCF3] rounded-lg shadow hover:border-green-700 border-2 cursor-pointer"
-            onClick={() => handleCardClick("1")}
+            className={`flex flex-col w-full m-4 p-4 bg-[#F4FCF3] rounded-lg shadow hover:border-green-700 border-2 cursor-pointer ${
+              selectedOption1 === "2"
+                ? "border-[#0C9663] bg-[#e7ffe3]"
+                : "border-[#F4FCF3] bg-[#F4FCF3]"
+            }`}
+            onClick={() => handleOptionClick1("2")}
           >
             <div className="flex">
               <div className="font-Bree text-[#1D233B] text-3xl ml-2 mr-4">
@@ -289,7 +395,7 @@ function Months() {
         </div>
         <div className="flex items-baseline mt-12 ml-2">
           <p className="text-black font-Bree text-3xl">Total Price : </p>
-          <p className="text-black font-Bree text-3xl">${price}</p>
+          <p className="text-black font-Bree text-3xl">${priceNew}</p>
           <p className="text-black font-Bree text-xl ml-2">CAD</p>
         </div>
         <div

@@ -75,7 +75,9 @@ function ContactForm() {
 
       const data = await response.json();
 
-      document.cookie = `token=${data.token}; path=/`;
+      console.log(data);
+
+      document.cookie = `token=${data.token}; path=/; expires=3600000;`;
       window.location.href = "/resident";
 
       console.log("OTP applied successful", data);

@@ -4,7 +4,7 @@ import "../tail.css";
 import { useProductContext } from "../utils/productContext";
 import { API } from "../utils/constants";
 
-function ResidentPage() {
+function NonResidentPage() {
   const { addProduct, createNew } = useProductContext();
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
@@ -16,31 +16,31 @@ function ResidentPage() {
   const handleCardClick = (countryValue) => {
     setSelectedCountry(countryValue);
     if (countryValue === "1") {
-      setPrice(parseInt(localStorage.getItem("total_ca")) + 499);
+      setPrice(parseInt(localStorage.getItem("total_ca")) + 1499);
     } else if (countryValue === "2") {
-      setPrice(parseInt(localStorage.getItem("total_ca")) + 499);
+      setPrice(parseInt(localStorage.getItem("total_ca")) + 1499);
     } else if (countryValue === "3") {
-      setPrice(parseInt(localStorage.getItem("total_ca")) + 799);
+      setPrice(parseInt(localStorage.getItem("total_ca")) + 1799);
     }
   };
 
   const handleOptionClick = (optionValue) => {
     setSelectedOption(optionValue);
     if (selectedCountry === "3" && optionValue === "no") {
-      setPrice(parseInt(localStorage.getItem("total_ca")) + 799 + 799);
+      setPrice(parseInt(localStorage.getItem("total_ca")) + 1799 + 799);
     }
     if (selectedCountry === "3" && optionValue === "yes") {
-      setPrice(parseInt(localStorage.getItem("total_ca")) + 799);
+      setPrice(parseInt(localStorage.getItem("total_ca")) + 1799);
     }
   };
 
   const handleSubmit = async () => {
     if (selectedCountry === "1") {
-      addProduct("5", 1);
+      addProduct("9", 1);
     } else if (selectedCountry === "2") {
-      addProduct("6", 1);
+      addProduct("10", 1);
     } else if (selectedCountry === "3") {
-      addProduct("7", 1);
+      addProduct("11", 1);
     }
     await handleCart();
     await createNew();
@@ -55,7 +55,7 @@ function ResidentPage() {
       localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
     }
     await handleCart();
-    window.location.href = "/shareHolder";
+    window.location.href = "/shareHoldernonResident";
   };
 
   const handleCart = async (event) => {
@@ -132,7 +132,7 @@ function ResidentPage() {
                   </div>
                 </div>
                 <div className="flex items-baseline mt-2">
-                  <p className="text-black font-Bree text-4xl">$499</p>
+                  <p className="text-black font-Bree text-4xl">$1499</p>
                   <p className="text-black font-Bree text-xl ml-2">CAD</p>
                 </div>
                 <div className="flex items-center mt-2">
@@ -160,7 +160,7 @@ function ResidentPage() {
                   </div>
                 </div>
                 <div className="flex items-baseline mt-4">
-                  <p className="text-black font-Bree text-5xl">$499</p>
+                  <p className="text-black font-Bree text-5xl">$1499</p>
                   <p className="text-black font-Bree text-xl ml-2">CAD</p>
                 </div>
               </div>
@@ -178,7 +178,7 @@ function ResidentPage() {
                   </div>
                 </div>
                 <div className="flex items-baseline mt-4">
-                  <p className="text-black font-Bree text-5xl">$799</p>
+                  <p className="text-black font-Bree text-5xl">$1799</p>
                   <p className="text-black font-Bree text-xl ml-2">CAD</p>
                 </div>
               </div>
@@ -321,4 +321,4 @@ function ResidentPage() {
   );
 }
 
-export default ResidentPage;
+export default NonResidentPage;

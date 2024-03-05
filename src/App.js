@@ -15,6 +15,8 @@ import ResidentPage from "./getStarted/res-page";
 import StakeHolder from "./getStarted/page3";
 import Months from "./getStarted/page4";
 import Book from "./getStarted/page5";
+import NonResidentPage from "./getStarted/non-res-page";
+import StakeHolderNonResident from "./getStarted/page3non";
 
 const App = () => {
   return (
@@ -25,7 +27,12 @@ const App = () => {
           <Route path="/pricedata" element={<PriceBox />}></Route>
           <Route path="/resident" element={<UserPage2 />}></Route>
           <Route path="/residentPage" element={<ResidentPage />}></Route>
+          <Route path="/nonresidentPage" element={<NonResidentPage />}></Route>
           <Route path="/shareHolder" element={<StakeHolder />}></Route>
+          <Route
+            path="/shareHoldernonResident"
+            element={<StakeHolderNonResident />}
+          ></Route>
           <Route path="/months" element={<Months />}></Route>
           <Route path="/book" element={<Book />}></Route>
           <Route path="/resource" element={<Company />}></Route>

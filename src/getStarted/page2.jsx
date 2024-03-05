@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../tail.css";
 import { useProductContext } from "../utils/productContext";
 import { API } from "../utils/constants";
 
 function UserPage2() {
-  const { selectedProducts, addProduct } = useProductContext();
-  const handleClick = () => {
+  const { selectedProducts, addProduct, createNew } = useProductContext();
+
+  const handleClick = async () => {
     addProduct("3", 1); // Example product and quantity
-    handleCart();
     console.log(selectedProducts);
+    await handleCart();
+    window.location.href = "/residentPage";
   };
-  const handleClick1 = () => {
-    addProduct("4", 1); // Example product and quantity
-    handleCart();
+
+  const handleClick1 = async () => {
+    await addProduct("4", 1); // Example product and quantity
     console.log(selectedProducts);
+    await handleCart();
+    window.location.href = "/nresidentPage";
   };
 
   const handleCart = async (event) => {
@@ -54,6 +58,8 @@ function UserPage2() {
     }
   };
 
+  // upload the previous value
+
   return (
     <>
       <NavLink to="/pricedata">
@@ -73,7 +79,6 @@ function UserPage2() {
         </div>
         <div className="flex md:flex-row flex-col md:w-[60%] gap-y-4 md:justify-evenly justify-center md:items-start items-center mt-16">
           <NavLink
-            to="/residentPage"
             className="flex justify-center items-center"
             onClick={handleClick}
           >
@@ -107,7 +112,7 @@ function UserPage2() {
           </NavLink>
 
           <NavLink
-            to="/nresidentPage"
+            to="/nonresidentPage"
             className="flex justify-center items-center"
             onClick={handleClick1}
           >
