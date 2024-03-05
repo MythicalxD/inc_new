@@ -5,19 +5,28 @@ import { useProductContext } from "../utils/productContext";
 import { API } from "../utils/constants";
 
 function UserPage2() {
-  const { selectedProducts, addProduct, createNew } = useProductContext();
-  const [s, sset] = useState("1");
+  const [s, sset] = useState("");
 
   const handleClick = async () => {
-    await addProduct("3", 1); // Example product and quantity
-    console.log(selectedProducts);
+    const selectedProducts =
+      JSON.parse(localStorage.getItem("selectedProducts")) || [];
+    const updatedProducts = [
+      ...selectedProducts,
+      { productId: "3", quantity: 1 },
+    ];
+    localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
     sset("1");
     await handleCart();
   };
 
   const handleClick1 = async () => {
-    await addProduct("4", 1); // Example product and quantity
-    console.log(selectedProducts);
+    const selectedProducts =
+      JSON.parse(localStorage.getItem("selectedProducts")) || [];
+    const updatedProducts = [
+      ...selectedProducts,
+      { productId: "4", quantity: 1 },
+    ];
+    localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
     sset("2");
     await handleCart();
   };
@@ -28,6 +37,9 @@ function UserPage2() {
         .split("; ")
         .find((row) => row.startsWith("token="))
         ?.split("=")[1];
+
+      const selectedProducts =
+        JSON.parse(localStorage.getItem("selectedProducts")) || [];
 
       // Construct the items array based on selectedProducts
       const items = selectedProducts.map(({ productId, quantity }) => ({
