@@ -157,6 +157,7 @@ function ResidentPage() {
       console.log("back successful", data);
     } catch (error) {
       console.error("Error back", error);
+      window.location.href = "/home";
     }
   };
 
