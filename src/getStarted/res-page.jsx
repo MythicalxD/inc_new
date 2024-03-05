@@ -44,11 +44,29 @@ function ResidentPage() {
     }
 
     if (selectedCountry === "1") {
-      addProduct("5", 1);
+      const selectedProducts =
+        JSON.parse(localStorage.getItem("selectedProducts")) || [];
+      const updatedProducts = [
+        ...selectedProducts,
+        { productId: "5", quantity: 1 },
+      ];
+      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
     } else if (selectedCountry === "2") {
-      addProduct("6", 1);
+      const selectedProducts =
+        JSON.parse(localStorage.getItem("selectedProducts")) || [];
+      const updatedProducts = [
+        ...selectedProducts,
+        { productId: "6", quantity: 1 },
+      ];
+      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
     } else if (selectedCountry === "3") {
-      addProduct("7", 1);
+      const selectedProducts =
+        JSON.parse(localStorage.getItem("selectedProducts")) || [];
+      const updatedProducts = [
+        ...selectedProducts,
+        { productId: "7", quantity: 1 },
+      ];
+      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
     }
     await handleCart();
     await createNew();

@@ -24,6 +24,15 @@ function ContactForm() {
   const handleUpload = async (event) => {
     event.preventDefault();
 
+    if (
+      formData.firstName == "" ||
+      formData.lastName == "" ||
+      formData.email == "" ||
+      formData.contact == ""
+    ) {
+      return;
+    }
+
     const registerData = {
       firstName: formData.firstName,
       lastName: formData.lastName,

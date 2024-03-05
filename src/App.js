@@ -18,6 +18,7 @@ import Book from "./getStarted/page5";
 import NonResidentPage from "./getStarted/non-res-page";
 import StakeHolderNonResident from "./getStarted/page3non";
 import StripePaymentWidget from "./getStarted/payment";
+import DonePayment from "./getStarted/done";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/months" element={<Months />}></Route>
           <Route path="/book" element={<Book />}></Route>
           <Route path="/pay" element={<StripePaymentWidget />}></Route>
+          <Route path="/done" element={<DonePayment />}></Route>
           <Route path="/resource" element={<Company />}></Route>
           <Route path="/article01" element={<Article1 />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
