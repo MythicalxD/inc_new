@@ -58,6 +58,7 @@ function PriceBox() {
           <NavLink
             className="flex justify-center items-center"
             onClick={handleClick1}
+            to={"/login"}
           >
             <div className="flex flex-col bg-white rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c48] border-3 border-[#ffffff] hover:border-[#0C9663] cursor-pointer">
               <div className="flex justify-center items-center mt-4">

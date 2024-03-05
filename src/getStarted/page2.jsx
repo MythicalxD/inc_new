@@ -18,7 +18,7 @@ function UserPage2() {
     await addProduct("4", 1); // Example product and quantity
     console.log(selectedProducts);
     await handleCart();
-    window.location.href = "/nresidentPage";
+    window.location.href = "/nonresidentPage";
   };
 
   const handleCart = async (event) => {

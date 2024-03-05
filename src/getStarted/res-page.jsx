@@ -35,6 +35,14 @@ function ResidentPage() {
   };
 
   const handleSubmit = async () => {
+    if (selectedCountry === "") {
+      return;
+    }
+
+    if (selectedCountry === "3" && selectedOption === "") {
+      return;
+    }
+
     if (selectedCountry === "1") {
       addProduct("5", 1);
     } else if (selectedCountry === "2") {
@@ -99,23 +107,57 @@ function ResidentPage() {
     }
   };
 
+  const backButton = async () => {
+    const selectedProducts =
+      JSON.parse(localStorage.getItem("selectedProducts")) || [];
+    const productIds = selectedProducts.map((item) => item.productId);
+    const dataToSend = { productIds };
+
+    try {
+      const authToken = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+      const response = await fetch(`${API}cart/cart/items`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify(dataToSend),
+      });
+
+      if (!response.ok) {
+        throw new Error("back failed");
+      }
+
+      const data = await response.json();
+      window.location.href = "/resident";
+
+      console.log("back successful", data);
+    } catch (error) {
+      console.error("Error back", error);
+    }
+  };
+
   return (
     <>
-      <NavLink to="/resident">
+      <div onClick={backButton}>
         <img
           src="img/back.png"
           alt="back"
           className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
         />
-      </NavLink>
-      <div className="bg-[#F6FAFD] h-[120vh] flex flex-col items-center">
+      </div>
+      <div className="bg-[#F6FAFD] h-[130vh] flex flex-col items-center">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           Please Select your province
         </div>
         <div className="flex font-Bree text-[#1D233B] text-xl mt-[10px] md:w-[60% w-[90%] justify-center text-center">
           Confirm where your business is located.
         </div>
-        <div className="flex md:flex-row flex-col h-[400px]">
+        <div className="flex md:flex-row flex-col h-[400px] mt-[50px]">
           <div className="flex md:w-[55vw] items-center mt-20 md:ml-[20px] h-full">
             <div className="flex flex-wrap">
               <div

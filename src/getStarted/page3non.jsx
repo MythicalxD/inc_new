@@ -148,15 +148,49 @@ function StakeHolderNonResident() {
     }
   };
 
+  const backButton = async () => {
+    const selectedProducts =
+      JSON.parse(localStorage.getItem("selectedProducts")) || [];
+    const productIds = selectedProducts.map((item) => item.productId);
+    const dataToSend = { productIds };
+
+    try {
+      const authToken = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+      const response = await fetch(`${API}cart/cart/items`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify(dataToSend),
+      });
+
+      if (!response.ok) {
+        throw new Error("back failed");
+      }
+
+      const data = await response.json();
+      window.location.href = "/nonresidentPage";
+
+      console.log("back successful", data);
+    } catch (error) {
+      console.error("Error back", error);
+    }
+  };
+
   return (
     <>
-      <NavLink to="/nonresidentPage">
+      <div onClick={backButton}>
         <img
           src="img/back.png"
           alt="back"
           className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
         />
-      </NavLink>
+      </div>
       <div className="bg-[#F6FAFD] flex flex-col items-center">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           How many Shareholders?

@@ -105,7 +105,9 @@ function Book() {
   };
 
   const handleSubmit = async () => {
-    window.location.href = "/shareHolder";
+    if (selectedOption === "") {
+      return;
+    }
   };
 
   return (
