@@ -189,7 +189,9 @@ function Book() {
                   className="px-4 py-2 border-1 border-black rounded-md"
                   onChange={(e) => setCouponCode(e.target.value)}
                 />
-                <button onClick={handleApplyCoupon} className="text-white ml-4" >Apply Coupon</button>
+                <button onClick={handleApplyCoupon} className="text-white ml-4">
+                  Apply Coupon
+                </button>
               </div>
               <div className="flex h-[1px] w-full bg-zinc-300 mt-[10px]"></div>
               {selectedOption === "yes" && (
@@ -201,7 +203,7 @@ function Book() {
               {selectedOption === "no" && (
                 <div className="flex font-Bree text-[#1D233B] text-2xl mt-[10px] w-full">
                   <div className="flex flex-grow">Pay to Reserve</div>
-                  <div className="flex">${0.3 * total} CAD</div>
+                  <div className="flex">${(0.3 * total).toFixed(2)} CAD</div>
                 </div>
               )}
               <div className="flex w-full justify-end items-end">
