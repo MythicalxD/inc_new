@@ -174,7 +174,8 @@ function StakeHolderNonResident() {
       }
 
       const data = await response.json();
-      window.location.href = "/nonresidentPage";
+      localStorage.setItem("total_ca", data.total);
+      window.location.href = "/resident";
 
       console.log("back successful", data);
     } catch (error) {

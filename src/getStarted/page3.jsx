@@ -186,6 +186,7 @@ function StakeHolder() {
       }
 
       const data = await response.json();
+      localStorage.setItem("total_ca", data.total);
       window.location.href = "/residentPage";
 
       console.log("back successful", data);
