@@ -164,21 +164,9 @@ function Months() {
 
       const data = await response.json();
       localStorage.setItem("total_ca", data.total);
-      const product =
-        JSON.parse(localStorage.getItem("selectedProducts")) || [];
-      let redirect = "";
-
-      if (product.length > 0) {
-        const productId = product[0].productId;
-        redirect =
-          productId === "13"
-            ? "/shareHolder"
-            : productId === "12"
-            ? "/shareHoldernonResident"
-            : "";
-      }
+      const redirect_val = localStorage.getItem("res");
       localStorage.setItem("selectedProducts", JSON.stringify([]));
-      window.location.href = redirect;
+      window.location.href = (redirect_val)? "/shareHolder" : "/shareHoldernonResident";
 
       console.log("back successful", data);
     } catch (error) {

@@ -5,9 +5,10 @@ import { useProductContext } from "../utils/productContext";
 import { API } from "../utils/constants";
 
 function UserPage2() {
-  const [s, sset] = useState("1");
+  const [s, sset] = useState("0");
 
   const handleClick = async () => {
+    localStorage.setItem("res", true);
     const selectedProducts =
       JSON.parse(localStorage.getItem("selectedProducts")) || [];
     const updatedProducts = [
@@ -20,6 +21,8 @@ function UserPage2() {
   };
 
   const handleClick1 = async () => {
+    localStorage.setItem("res", false);
+    sset("2");
     const selectedProducts =
       JSON.parse(localStorage.getItem("selectedProducts")) || [];
     const updatedProducts = [
@@ -27,7 +30,6 @@ function UserPage2() {
       { productId: "4", quantity: 1 },
     ];
     localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
-    sset("2");
     await handleCart();
   };
 
@@ -100,6 +102,7 @@ function UserPage2() {
           <NavLink
             className="flex justify-center items-center"
             onClick={handleClick}
+            to={"/residentPage"}
           >
             <div className="flex flex-col bg-white rounded-xl md:w-[370px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-[#ffffff] border-3 cursor-pointer">
               <div className="flex justify-center items-center mt-4">
@@ -131,9 +134,9 @@ function UserPage2() {
           </NavLink>
 
           <NavLink
-            to="/nonresidentPage"
             className="flex justify-center items-center mb-8"
             onClick={handleClick1}
+            to={"/nonresidentPage"}
           >
             <div className="flex flex-col bg-white rounded-xl md:w-[370px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c48] border-3 border-[#ffffff] hover:border-[#0C9663] cursor-pointer">
               <div className="flex justify-center items-center mt-4">
