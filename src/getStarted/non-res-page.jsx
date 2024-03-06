@@ -87,7 +87,7 @@ function NonResidentPage() {
       }
     }
     await handleCart();
-    window.location.href = "/shareHolder";
+    window.location.href = "/shareHoldernonResident";
   };
 
   const handleCart = async (event) => {
