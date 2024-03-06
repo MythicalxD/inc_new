@@ -166,7 +166,7 @@ function Months() {
       localStorage.setItem("total_ca", data.total);
       const redirect_val = localStorage.getItem("res");
       localStorage.setItem("selectedProducts", JSON.stringify([]));
-      window.location.href = (redirect_val)? "/shareHolder" : "/shareHoldernonResident";
+      window.location.href = (redirect_val === true)? "/shareHolder" : "/shareHoldernonResident";
 
       console.log("back successful", data);
     } catch (error) {
