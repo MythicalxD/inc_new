@@ -138,9 +138,17 @@ function Book() {
   }, []);
 
   const checkout = async () => {
-    const registerData = {
-      payInFull: selectedOption === "yes" ? true : false,
-    };
+    let registerData;
+    if (couponCode === "") {
+      registerData = {
+        payInFull: selectedOption === "yes" ? true : false,
+      };
+    } else {
+      registerData = {
+        payInFull: selectedOption === "yes" ? true : false,
+        discountCode: couponCode,
+      };
+    }
 
     try {
       const authToken = document.cookie
