@@ -58,7 +58,7 @@ const DonePayment = ({ clientSecret }) => {
         </div>
         <p className="ml-2 font-Bree text-xl mt-4">
           {redirectStatus === "succeeded"
-            ? " Thank you! Your payment has been received"
+            ? " you will receive an email from out team within 24 hours."
             : "An error occurred while processing your payment"}
         </p>
         <p className="ml-2 font-Bree text-md mt-1 text-zinc-400">
