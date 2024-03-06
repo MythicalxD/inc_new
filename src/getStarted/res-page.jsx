@@ -43,6 +43,8 @@ function ResidentPage() {
       return;
     }
 
+    localStorage.setItem("selectedProducts", JSON.stringify([]));
+
     if (selectedCountry === "1") {
       const selectedProducts =
         JSON.parse(localStorage.getItem("selectedProducts")) || [];
@@ -60,25 +62,30 @@ function ResidentPage() {
       ];
       localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
     } else if (selectedCountry === "3") {
-      const selectedProducts =
-        JSON.parse(localStorage.getItem("selectedProducts")) || [];
-      const updatedProducts = [
-        ...selectedProducts,
-        { productId: "7", quantity: 1 },
-      ];
-      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
-    }
-    await handleCart();
-    await createNew();
-    if (selectedCountry === "3" && selectedOption == "no") {
-      localStorage.setItem("selectedProducts", JSON.stringify([]));
-      const selectedProducts =
-        JSON.parse(localStorage.getItem("selectedProducts")) || [];
-      const updatedProducts = [
-        ...selectedProducts,
-        { productId: "8", quantity: 1 },
-      ];
-      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+      if (selectedOption == "no") {
+        const selectedProducts =
+          JSON.parse(localStorage.getItem("selectedProducts")) || [];
+        const updatedProducts = [
+          ...selectedProducts,
+          { productId: "7", quantity: 1 },
+          { productId: "8", quantity: 1 },
+        ];
+        localStorage.setItem(
+          "selectedProducts",
+          JSON.stringify(updatedProducts)
+        );
+      } else {
+        const selectedProducts =
+          JSON.parse(localStorage.getItem("selectedProducts")) || [];
+        const updatedProducts = [
+          ...selectedProducts,
+          { productId: "7", quantity: 1 },
+        ];
+        localStorage.setItem(
+          "selectedProducts",
+          JSON.stringify(updatedProducts)
+        );
+      }
     }
     await handleCart();
     window.location.href = "/shareHolder";
@@ -170,7 +177,7 @@ function ResidentPage() {
           className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
         />
       </div>
-      <div className="bg-[#F6FAFD] md:h-[130vh] h-[170vh] flex flex-col items-center">
+      <div className="bg-[#F6FAFD] min-h-screen md:h-[130vh] h-[170vh] flex flex-col items-center">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           Please Select your province
         </div>
@@ -178,7 +185,7 @@ function ResidentPage() {
           Confirm where your business is located.
         </div>
         <div className="flex md:flex-row flex-col h-[400px] mt-[50px]">
-          <div className="flex md:w-[55vw] items-center mt-20 md:ml-[20px] h-full">
+          <div className="flex md:w-[55vw] items-center md:mt-16 mt-[130px] md:ml-[20px] h-full">
             <div className="flex flex-wrap">
               <div
                 className={`flex flex-col h-[180px] w-[330px] m-4 p-4 bg-[#F4FCF3] rounded-lg shadow hover:border-green-700 border-2 cursor-pointer ${
@@ -289,7 +296,7 @@ function ResidentPage() {
             </div>
           </div>
           <div className="flex h-[150%] w-[1px] bg-zinc-300 mr-[70px] ml-[40px] mt-[50px]"></div>
-          <div className="flex md:w-[30vw] mt-12">
+          <div className="flex md:w-[30vw] md:mt-12 mt-[120px]">
             <div className="flex flex-col md:m-0 m-8">
               <div className="flex font-Bree text-[#1D233B] text-lg mt-[10px] justify-center text-start">
                 Resident Director Document Legalization

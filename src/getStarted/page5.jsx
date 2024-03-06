@@ -7,17 +7,20 @@ import StripePaymentWidget from "./payment";
 
 function Book() {
   const { selectedProducts, addProduct } = useProductContext();
-  const [stripePromise, setStripePromise] = useState(null);
 
-  const handleClick = () => {
-    addProduct("3", 1); // Example product and quantity
-    handleCart();
-    console.log(selectedProducts);
+  const [quantity, setQuantity] = useState(0);
+  const [discount, setDiscount] = useState(0);
+
+  const incrementQuantity = () => {
+    if (quantity <= 4) {
+      setQuantity(quantity + 1);
+    }
   };
-  const handleClick1 = () => {
-    addProduct("4", 1); // Example product and quantity
-    handleCart();
-    console.log(selectedProducts);
+
+  const decrementQuantity = () => {
+    if (quantity >= 0) {
+      setQuantity(quantity - 1);
+    }
   };
 
   const [selectedOption, setSelectedOption] = useState("yes");
@@ -32,12 +35,7 @@ function Book() {
 
   const [couponCode, setCouponCode] = useState("");
 
-  const handleApplyCoupon = () => {
-    // Clear the coupon code input after applying the coupon
-    setCouponCode("");
-  };
-
-  const handleCart = async (event) => {
+  const handleDiscount = async () => {
     try {
       const authToken = document.cookie
         .split("; ")
@@ -45,20 +43,17 @@ function Book() {
         ?.split("=")[1];
 
       // Construct the items array based on selectedProducts
-      const items = selectedProducts.map(({ productId, quantity }) => ({
-        productId,
-        quantity: parseInt(quantity) || 1, // Set quantity to 1 if not provided
-      }));
+      const requestData = {
+        discountCode: couponCode,
+      };
 
-      const registerData = { items }; // Create the payload
-
-      const response = await fetch(`${API}cart/cart/add`, {
+      const response = await fetch(`${API}cart/cart/discount`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${authToken}`,
         },
-        body: JSON.stringify(registerData),
+        body: JSON.stringify(requestData),
       });
 
       if (!response.ok) {
@@ -66,7 +61,43 @@ function Book() {
       }
 
       const data = await response.json();
-      localStorage.setItem("total_ca", data.total);
+      setDiscount(total - data.discountedTotal);
+      setTotal(data.discountedTotal);
+
+      console.log("cart applied successful", data);
+    } catch (error) {
+      console.error("Error OTP", error);
+    }
+  };
+
+  const handleUpdate = async () => {
+    try {
+      const authToken = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+      // Construct the items array based on selectedProducts
+      const requestData = {
+        discountCode: couponCode,
+      };
+
+      const response = await fetch(`${API}cart/cart/discount`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      if (!response.ok) {
+        throw new Error("cart failed");
+      }
+
+      const data = await response.json();
+      setDiscount(total - data.discountedTotal);
+      setTotal(data.discountedTotal);
 
       console.log("cart applied successful", data);
     } catch (error) {
@@ -177,6 +208,7 @@ function Book() {
 
       const data = await response.json();
       localStorage.setItem("total_ca", data.total);
+      localStorage.setItem("selectedProducts", JSON.stringify([]));
       window.location.href = "/months";
 
       console.log("back successful", data);
@@ -194,7 +226,7 @@ function Book() {
           className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
         />
       </div>
-      <div className="bg-[#F6FAFD] flex flex-col items-center">
+      <div className="bg-[#F6FAFD] min-h-screen flex flex-col items-center">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           Checkout
         </div>
@@ -257,10 +289,24 @@ function Book() {
                   key={index}
                   className="flex font-Bree text-[#1D233B] text-xl mt-[10px] w-full"
                 >
-                  <div className="flex flex-grow">{item.productName}</div>
+                  <div className="flex">{item.productName}</div>
+
+                  {["12", "13", "19", "20"].includes(item.productId) && (
+                    <div className="flex ms-4 border-1 border-black rounded px-2 ">
+                      <div style={{ display: "flex ", alignItems: "center" }}>
+                        <button onClick={decrementQuantity}>-</button>
+                        <div style={{ width: "30px", textAlign: "center" }}>
+                          {item.quantity}
+                        </div>
+                        <button onClick={incrementQuantity}>+</button>
+                      </div>
+                    </div>
+                  )}
+                  <div className="flex flex-grow"></div>
                   <div className="flex">${item.price}</div>
                 </div>
               ))}
+
               <div className="flex h-[1px] w-full bg-zinc-300 mt-[30px]"></div>
               <div className="bg-black rounded-md pr-4 mt-2">
                 <input
@@ -270,17 +316,38 @@ function Book() {
                   className="px-4 py-2 border-1 border-black rounded-md"
                   onChange={(e) => setCouponCode(e.target.value)}
                 />
-                <button onClick={handleApplyCoupon} className="text-white ml-4">
+                <button onClick={handleDiscount} className="text-white ml-4">
                   Apply Coupon
                 </button>
               </div>
               <div className="flex h-[1px] w-full bg-zinc-300 mt-[10px]"></div>
-              {selectedOption === "yes" && (
-                <div className="flex font-Bree text-[#1D233B] text-2xl mt-[10px] w-full">
-                  <div className="flex flex-grow">Total</div>
-                  <div className="flex">${total} CAD</div>
-                </div>
-              )}
+
+              <div className="flex flex-col w-full mt-[20px]">
+                {discount != 0 && (
+                  <div className="flex font-Bree text-[#1D233B] text-xl w-full">
+                    <div className="flex flex-grow">Discount Coupon</div>
+                    <div className="flex text-green-500">
+                      -${discount.toFixed(2)}
+                    </div>
+                  </div>
+                )}
+
+                {selectedOption === "yes" && (
+                  <div className="flex flex-col font-Bree text-[#1D233B] text-2xl w-full">
+                    <div className="flex font-Bree text-[#1D233B] text-xl mt-[10px] w-full">
+                      <div className="flex flex-grow">Discount (5%)</div>
+                      <div className="flex text-green-500">
+                        -${(0.05 * total).toFixed(2)}
+                      </div>
+                    </div>
+                    <div className="flex mt-4">
+                      <div className="flex flex-grow text-3xl">Total</div>
+                      <div className="flex">${total - 0.05 * total} CAD</div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {selectedOption === "no" && (
                 <div className="flex font-Bree text-[#1D233B] text-2xl mt-[10px] w-full">
                   <div className="flex flex-grow">Pay to Reserve</div>

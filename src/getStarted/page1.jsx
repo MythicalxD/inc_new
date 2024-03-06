@@ -56,7 +56,7 @@ function PriceBox() {
   }, []); // Empty dependency array ensures it only runs once
   return (
     <>
-      <div className="bg-[#F6FAFD] flex flex-col items-center">
+      <div className="bg-[#F6FAFD] min-h-screen flex flex-col items-center">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           Let’s Get Started
         </div>

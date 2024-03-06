@@ -13,6 +13,12 @@ function ContactForm() {
     otp: "",
   });
 
+  const [selectedCountryCode, setSelectedCountryCode] = useState("");
+
+  const handleChange2 = (event) => {
+    setSelectedCountryCode(event.target.value);
+  };
+
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -37,7 +43,7 @@ function ContactForm() {
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: formData.email,
-      phone: formData.contact,
+      phone: selectedCountryCode.toString() + formData.contact.toString(),
     };
 
     try {
@@ -169,16 +175,46 @@ function ContactForm() {
             >
               Contact No.*
             </label>
-            <input
-              id="contact"
-              type="tel"
-              name="contact"
-              value={formData.contact}
-              onChange={handleChange}
-              className="appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight text-md"
-              placeholder="Enter your contact no."
-              required
-            />
+
+            <div className="flex">
+              <select
+                id="countryCode"
+                value={selectedCountryCode}
+                onChange={handleChange2}
+                className="w-[70px] mr-2"
+              >
+                <option value="">+00</option>
+                <option value="+1">USA (+1)</option>
+                <option value="+1">Canada (+1)</option>
+                <option value="+44">UK (+44)</option>
+                <option value="+91">India (+91)</option>
+                <option value="+61">Australia (+61)</option>
+                <option value="+86">China (+86)</option>
+                <option value="+81">Japan (+81)</option>
+                <option value="+49">Germany (+49)</option>
+                <option value="+33">France (+33)</option>
+                <option value="+34">Spain (+34)</option>
+                <option value="+39">Italy (+39)</option>
+                <option value="+7">Russia (+7)</option>
+                <option value="+82">South Korea (+82)</option>
+                <option value="+64">New Zealand (+64)</option>
+                <option value="+65">Singapore (+65)</option>
+                <option value="+60">Malaysia (+60)</option>
+                <option value="+971">United Arab Emirates (+971)</option>
+                <option value="+55">Brazil (+55)</option>
+                <option value="+92">Pakistan (+92)</option>
+              </select>
+              <input
+                id="contact"
+                type="tel"
+                name="contact"
+                value={formData.contact}
+                onChange={handleChange}
+                className="appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight text-md"
+                placeholder="Enter your contact no."
+                required
+              />
+            </div>
           </div>
 
           {otp && (

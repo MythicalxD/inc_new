@@ -88,7 +88,7 @@ function UserPage2() {
           className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
         />
       </NavLink>
-      <div className="bg-[#F6FAFD] flex flex-col items-center">
+      <div className="bg-[#F6FAFD] min-h-screen flex flex-col items-center">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           Let’s Get Your Business Started
         </div>

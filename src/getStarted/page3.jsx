@@ -89,6 +89,7 @@ function StakeHolder() {
     if (selectedValue2 === "no" && selectedValue3 === "") {
       return;
     }
+    localStorage.setItem("selectedProducts", JSON.stringify([]));
 
     const selectedProducts =
       JSON.parse(localStorage.getItem("selectedProducts")) || [];
@@ -111,7 +112,7 @@ function StakeHolder() {
         JSON.parse(localStorage.getItem("selectedProducts")) || [];
       const updatedProducts = [
         ...selectedProducts,
-        { productId: "13", quantity: parseInt(selectedValue3) },
+        { productId: "20", quantity: parseInt(selectedValue3) },
       ];
       localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
     }
@@ -187,6 +188,7 @@ function StakeHolder() {
 
       const data = await response.json();
       localStorage.setItem("total_ca", data.total);
+      localStorage.setItem("selectedProducts", JSON.stringify([]));
       window.location.href = "/residentPage";
 
       console.log("back successful", data);
@@ -204,7 +206,7 @@ function StakeHolder() {
           className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
         />
       </div>
-      <div className="bg-[#F6FAFD] flex flex-col items-center p-3">
+      <div className="bg-[#F6FAFD] min-h-screen flex flex-col items-center p-3">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           How many Shareholders?
         </div>

@@ -164,7 +164,21 @@ function Months() {
 
       const data = await response.json();
       localStorage.setItem("total_ca", data.total);
-      window.location.href = "/nonresidentPage";
+      const product =
+        JSON.parse(localStorage.getItem("selectedProducts")) || [];
+      let redirect = "";
+
+      if (product.length > 0) {
+        const productId = product[0].productId;
+        redirect =
+          productId === "13"
+            ? "/shareHolder"
+            : productId === "12"
+            ? "/shareHoldernonResident"
+            : "";
+      }
+      localStorage.setItem("selectedProducts", JSON.stringify([]));
+      window.location.href = redirect;
 
       console.log("back successful", data);
     } catch (error) {
@@ -181,7 +195,7 @@ function Months() {
           className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
         />
       </div>
-      <div className="bg-[#F6FAFD] flex flex-col items-center">
+      <div className="bg-[#F6FAFD] min-h-screen flex flex-col items-center">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           Please select the months for your office address
         </div>
@@ -191,16 +205,16 @@ function Months() {
           allows you to have a physical presence in any city without the bloated
           costs of office space rentals.
         </div>
-        <div className="flex flex-col md:w-[60%] gap-y-8 md:justify-evenly justify-center md:items-start items-center mt-16">
-          <div className="flex md:flex-row flex-col justify-evenly gap-x-12">
+        <div className="flex flex-col md:w-[70%] w-full gap-y-8 md:justify-evenly justify-center md:items-center items-center mt-16">
+          <div className="flex md:flex-row flex-col justify-evenly gap-x-12 gap-y-4">
             <div
               className="flex justify-center items-center"
               onClick={() => handleOptionClick("1")}
             >
               <div
-                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-[#F4FCF3] border-3 cursor-pointer ${
+                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-3 cursor-pointer ${
                   selectedOption === "1"
-                    ? "border-[#0C9663] bg-[#e7ffe3]"
+                    ? "border-[#0C9663] bg-[#d6ffcf]"
                     : "border-[#F4FCF3] bg-[#F4FCF3]"
                 }`}
               >
@@ -229,7 +243,7 @@ function Months() {
               onClick={() => handleOptionClick("2")}
             >
               <div
-                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-[#F4FCF3] border-3 cursor-pointer ${
+                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-3 cursor-pointer ${
                   selectedOption === "2"
                     ? "border-[#0C9663] bg-[#e7ffe3]"
                     : "border-[#F4FCF3] bg-[#F4FCF3]"
@@ -262,7 +276,7 @@ function Months() {
               onClick={() => handleOptionClick("3")}
             >
               <div
-                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-[#F4FCF3] border-3 cursor-pointer ${
+                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-3 cursor-pointer ${
                   selectedOption === "3"
                     ? "border-[#0C9663] bg-[#e7ffe3]"
                     : "border-[#F4FCF3] bg-[#F4FCF3]"
@@ -293,7 +307,7 @@ function Months() {
               onClick={() => handleOptionClick("4")}
             >
               <div
-                className={`flex flex-row bg-[#F4FCF3] h-[170px] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-[#F4FCF3] border-3 cursor-pointer ${
+                className={`flex flex-row bg-[#F4FCF3] h-[170px] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-3 cursor-pointer ${
                   selectedOption === "4"
                     ? "border-[#0C9663] bg-[#e7ffe3]"
                     : "border-[#F4FCF3] bg-[#F4FCF3]"
@@ -317,7 +331,12 @@ function Months() {
         <div className="flex font-Bree text-[#1D233B] text-xl mt-[10px] md:w-[60% w-[90%] justify-center text-center">
           Select an option for minute book:
         </div>
-        <div className="flex flex-col md:w-[60%] gap-y-8 md:justify-evenly justify-center md:items-start items-center mt-0">
+        <div className="flex flex-col relative md:w-[70%] gap-y-8 md:justify-evenly justify-center md:items-start items-center mt-0">
+          <img
+            src="img/tag.png"
+            alt="back"
+            className="absolute top-7 md:right-[-20px] right-0 w-[200px]"
+          />
           <div
             className={`flex flex-col w-full m-4 p-4 bg-[#F4FCF3] rounded-lg shadow hover:border-green-700 border-2 cursor-pointer ${
               selectedOption1 === "1"
@@ -327,7 +346,7 @@ function Months() {
             onClick={() => handleOptionClick1("1")}
           >
             <div className="flex">
-              <div className="font-Bree text-[#1D233B] text-3xl ml-2 mr-4">
+              <div className="font-Bree text-[#1D233B] text-3xl ml-2 mr-4 md:mt-0 mt-8">
                 Essential Corporate Minute Book (Electronic Copy)
               </div>
             </div>
@@ -412,7 +431,7 @@ function Months() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:w-[60%] gap-y-8 md:justify-evenly justify-center md:items-start items-center ">
+        <div className="flex flex-col md:w-[70%] gap-y-8 md:justify-evenly justify-center md:items-start items-center ">
           <div
             className={`flex flex-col w-full m-4 p-4 bg-[#F4FCF3] rounded-lg shadow hover:border-green-700 border-2 cursor-pointer ${
               selectedOption1 === "2"
@@ -438,7 +457,7 @@ function Months() {
           <p className="text-black font-Bree text-xl ml-2">CAD</p>
         </div>
         <div
-          className="flex bg-[#33F28B] rounded-md p-2 px-4 w-[60%] m-2 mt-6 text-center justify-center items-center font-Bree text-[#1D233B] cursor-pointer hover:bg-[#40c47e]"
+          className="flex bg-[#33F28B] rounded-md p-2 px-4 w-[20%] m-8 mt-6 text-center justify-center items-center font-Bree text-[#1D233B] cursor-pointer hover:bg-[#40c47e]"
           onClick={handleSubmit}
         >
           Next

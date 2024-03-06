@@ -21,13 +21,14 @@ function LoginPage() {
       // Perform actions with the token if needed
     }
   }, []); // This effect runs once on component mount
+  
 
   return (
     <>
-      <div className="flex w-screen justify-center items-center">
+      <div className="flex w-screen items-start justify-start">
         <NavLink to="/pricedata">
           <img
-            src="img/back_plain.png"
+            src="img/back.png"
             alt="back"
             className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
           />
@@ -36,9 +37,9 @@ function LoginPage() {
         <img
           src="img/login.png"
           alt="login image"
-          className="w-[60%] md:block hidden"
+          className="w-[50%] md:block hidden"
         />
-        <div className="w-screen flex flex-col md:items-center md:justify-center md:mt-[100px] z-10">
+        <div className="w-screen flex flex-col md:items-center md:justify-center md:mt-[30px] z-10">
           <ContactForm />
         </div>
       </div>

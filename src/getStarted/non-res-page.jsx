@@ -35,27 +35,59 @@ function NonResidentPage() {
   };
 
   const handleSubmit = async () => {
-    if (selectedCountry === "1") {
-      addProduct("9", 1);
-    } else if (selectedCountry === "2") {
-      addProduct("10", 1);
-    } else if (selectedCountry === "3") {
-      addProduct("11", 1);
+    if (selectedCountry === "") {
+      return;
     }
-    await handleCart();
-    await createNew();
-    if (selectedCountry === "3" && selectedOption == "no") {
-      localStorage.setItem("selectedProducts", JSON.stringify([]));
+
+    if (selectedCountry === "3" && selectedOption === "") {
+      return;
+    }
+    localStorage.setItem("selectedProducts", JSON.stringify([]));
+
+    if (selectedCountry === "1") {
       const selectedProducts =
         JSON.parse(localStorage.getItem("selectedProducts")) || [];
       const updatedProducts = [
         ...selectedProducts,
-        { productId: "8", quantity: 1 },
+        { productId: "9", quantity: 1 },
       ];
       localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+    } else if (selectedCountry === "2") {
+      const selectedProducts =
+        JSON.parse(localStorage.getItem("selectedProducts")) || [];
+      const updatedProducts = [
+        ...selectedProducts,
+        { productId: "10", quantity: 1 },
+      ];
+      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+    } else if (selectedCountry === "3") {
+      if (selectedOption == "no") {
+        const selectedProducts =
+          JSON.parse(localStorage.getItem("selectedProducts")) || [];
+        const updatedProducts = [
+          ...selectedProducts,
+          { productId: "11", quantity: 1 },
+          { productId: "8", quantity: 1 },
+        ];
+        localStorage.setItem(
+          "selectedProducts",
+          JSON.stringify(updatedProducts)
+        );
+      } else {
+        const selectedProducts =
+          JSON.parse(localStorage.getItem("selectedProducts")) || [];
+        const updatedProducts = [
+          ...selectedProducts,
+          { productId: "7", quantity: 1 },
+        ];
+        localStorage.setItem(
+          "selectedProducts",
+          JSON.stringify(updatedProducts)
+        );
+      }
     }
     await handleCart();
-    window.location.href = "/shareHoldernonResident";
+    window.location.href = "/shareHolder";
   };
 
   const handleCart = async (event) => {
@@ -150,7 +182,7 @@ function NonResidentPage() {
           Confirm where your business is located.
         </div>
         <div className="flex md:flex-row flex-col h-[400px]">
-          <div className="flex md:w-[55vw] items-center mt-20 md:ml-[20px] h-full">
+          <div className="flex md:w-[55vw] items-center md:mt-16 mt-[130px] md:ml-[20px] h-full">
             <div className="flex flex-wrap mt-[100px]">
               <div
                 className={`flex flex-col h-[180px] w-[330px] m-4 p-4 bg-[#F4FCF3] rounded-lg shadow hover:border-green-700 border-2 cursor-pointer ${
@@ -261,7 +293,7 @@ function NonResidentPage() {
             </div>
           </div>
           <div className="flex h-[150%] w-[1px] bg-zinc-300 mr-[70px] ml-[40px] mt-[50px]"></div>
-          <div className="flex md:w-[30vw] mt-[100px]">
+          <div className="flex md:w-[30vw] md:mt-12 mt-[180px]">
             <div className="flex flex-col m-4">
               <div className="flex font-Bree text-[#1D233B] text-lg mt-[10px] justify-center text-start">
                 Resident Director Document Legalization

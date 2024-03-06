@@ -78,6 +78,18 @@ function StakeHolderNonResident() {
   };
 
   const handleSubmit = async () => {
+    if (
+      selectedValue === "" ||
+      selectedValue1 === "" ||
+      selectedValue2 === ""
+    ) {
+      return;
+    }
+
+    if (selectedValue2 === "no" && selectedValue3 === "") {
+      return;
+    }
+    localStorage.setItem("selectedProducts", JSON.stringify([]));
     const selectedProducts =
       JSON.parse(localStorage.getItem("selectedProducts")) || [];
     const updatedProducts = [
@@ -99,7 +111,7 @@ function StakeHolderNonResident() {
         JSON.parse(localStorage.getItem("selectedProducts")) || [];
       const updatedProducts = [
         ...selectedProducts,
-        { productId: "12", quantity: parseInt(selectedValue3) },
+        { productId: "19", quantity: parseInt(selectedValue3) },
       ];
       localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
     }
@@ -192,7 +204,7 @@ function StakeHolderNonResident() {
           className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
         />
       </div>
-      <div className="bg-[#F6FAFD] flex flex-col items-center p-3">
+      <div className="bg-[#F6FAFD] min-h-screen flex flex-col items-center p-3">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           How many Shareholders?
         </div>
