@@ -6,20 +6,18 @@ import { API } from "../utils/constants";
 import StripePaymentWidget from "./payment";
 
 function Book() {
-  const { selectedProducts, addProduct } = useProductContext();
-
   const [quantity, setQuantity] = useState(0);
   const [discount, setDiscount] = useState(0);
 
-  const incrementQuantity = () => {
-    if (quantity <= 4) {
-      setQuantity(quantity + 1);
+  const incrementQuantity = (id, qty) => {
+    if (qty <= 4) {
+      handleUpdate(id, qty + 1);
     }
   };
 
-  const decrementQuantity = () => {
-    if (quantity >= 0) {
-      setQuantity(quantity - 1);
+  const decrementQuantity = (id, qty) => {
+    if (qty > 0) {
+      handleUpdate(id, qty - 1);
     }
   };
 
@@ -70,7 +68,7 @@ function Book() {
     }
   };
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (id, qty) => {
     try {
       const authToken = document.cookie
         .split("; ")
@@ -79,10 +77,11 @@ function Book() {
 
       // Construct the items array based on selectedProducts
       const requestData = {
-        discountCode: couponCode,
+        productId: id,
+        quantity: qty,
       };
 
-      const response = await fetch(`${API}cart/cart/discount`, {
+      const response = await fetch(`${API}cart/cart/updateqty`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -96,8 +95,7 @@ function Book() {
       }
 
       const data = await response.json();
-      setDiscount(total - data.discountedTotal);
-      setTotal(data.discountedTotal);
+      fetchData();
 
       console.log("cart applied successful", data);
     } catch (error) {
@@ -105,37 +103,37 @@ function Book() {
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const authToken = document.cookie
-          .split("; ")
-          .find((row) => row.startsWith("token="))
-          ?.split("=")[1];
+  const fetchData = async () => {
+    try {
+      const authToken = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
 
-        const headers = {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${authToken}`,
-        };
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      };
 
-        const response = await fetch(`${API}cart/cart/summary`, {
-          method: "GET", // Assuming you're fetching cart summary with a GET request
-          headers: headers,
-        });
+      const response = await fetch(`${API}cart/cart/summary`, {
+        method: "GET", // Assuming you're fetching cart summary with a GET request
+        headers: headers,
+      });
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch cart summary");
-        }
-
-        const data = await response.json();
-        setCartItems(data.items);
-        setTotal(data.total);
-      } catch (error) {
-        console.error("Error fetching cart summary:", error);
-        window.location.href = "/pricedata";
+      if (!response.ok) {
+        throw new Error("Failed to fetch cart summary");
       }
-    };
 
+      const data = await response.json();
+      setCartItems(data.items);
+      setTotal(data.total);
+    } catch (error) {
+      console.error("Error fetching cart summary:", error);
+      window.location.href = "/pricedata";
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -294,11 +292,23 @@ function Book() {
                   {["12", "13", "19", "20"].includes(item.productId) && (
                     <div className="flex ms-4 border-1 border-black rounded px-2 ">
                       <div style={{ display: "flex ", alignItems: "center" }}>
-                        <button onClick={decrementQuantity}>-</button>
+                        <button
+                          onClick={() =>
+                            decrementQuantity(item.productId, item.quantity)
+                          }
+                        >
+                          -
+                        </button>
                         <div style={{ width: "30px", textAlign: "center" }}>
                           {item.quantity}
                         </div>
-                        <button onClick={incrementQuantity}>+</button>
+                        <button
+                          onClick={() =>
+                            incrementQuantity(item.productId, item.quantity)
+                          }
+                        >
+                          +
+                        </button>
                       </div>
                     </div>
                   )}
