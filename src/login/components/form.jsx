@@ -8,12 +8,13 @@ function ContactForm() {
     lastName: "",
     contact: "",
   });
-  const [otp, setOtp] = useState(false);
+  const [otp, setOtp] = useState(true);
   const [formData1, setFormData1] = useState({
     otp: "",
   });
 
   const [selectedCountryCode, setSelectedCountryCode] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange2 = (event) => {
     setSelectedCountryCode(event.target.value);
@@ -31,11 +32,13 @@ function ContactForm() {
     event.preventDefault();
 
     if (
-      formData.firstName == "" ||
-      formData.lastName == "" ||
-      formData.email == "" ||
-      formData.contact == ""
+      formData.firstName === "" ||
+      formData.lastName === "" ||
+      formData.email === "" ||
+      formData.contact == "" ||
+      selectedCountryCode === ""
     ) {
+      setError("All felids are required!");
       return;
     }
 
@@ -45,6 +48,8 @@ function ContactForm() {
       email: formData.email,
       phone: selectedCountryCode.toString() + formData.contact.toString(),
     };
+
+    console.log(selectedCountryCode.toString() + formData.contact.toString());
 
     try {
       const response = await fetch(`${API}auth/register`, {
@@ -60,7 +65,9 @@ function ContactForm() {
       }
 
       const data = await response.json();
-      setOtp(true);
+      document.cookie = `token=${data.token}; path=/; expires=3600000;`;
+      window.location.href = "/resident";
+
       console.log("Registration successful:", data);
     } catch (error) {
       console.error("Error registering:", error);
@@ -76,7 +83,7 @@ function ContactForm() {
     };
 
     try {
-      const response = await fetch(`${API}auth/verify-otp`, {
+      const response = await fetch(`${API}auth/register-otp`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -182,6 +189,7 @@ function ContactForm() {
                 value={selectedCountryCode}
                 onChange={handleChange2}
                 className="w-[70px] mr-2"
+                required
               >
                 <option value="">+00</option>
                 <option value="+1">USA (+1)</option>
@@ -217,7 +225,7 @@ function ContactForm() {
             </div>
           </div>
 
-          {otp && (
+          {/* {otp && (
             <div className="px-3 mb-6 flex flex-col">
               <label
                 htmlFor="firstName"
@@ -236,7 +244,7 @@ function ContactForm() {
                 required
               />
             </div>
-          )}
+          )} */}
         </div>
         {!otp && (
           <button
@@ -247,9 +255,10 @@ function ContactForm() {
           </button>
         )}
       </form>
+      {error && <div className="flex ml-[20px] text-red-500">{error}</div>}
       {otp && (
         <button
-          onClick={handleUploadOtp}
+          onClick={handleUpload}
           className="bg-[#33F28B] font-Bree text-lg hover:bg-green-500 text-[#1D233B] py-3 px-4 m-3 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 w-[60%]"
         >
           Get Started

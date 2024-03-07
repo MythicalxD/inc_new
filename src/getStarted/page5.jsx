@@ -239,8 +239,8 @@ function Book() {
 
         <div className="flex md:flex-row flex-col w-screen">
           <div className="flex md:w-[50%]">
-            <div className="flex flex-col mt-12 items-start justify-start ml-12">
-              <div className="flex">
+            <div className="flex flex-col mt-12 md:items-start md:justify-start md:ml-12 md:p-0 p-4 ">
+              <div className="flex md:flex-row flex-col">
                 <label
                   className="flex bg-white px-4 py-3 rounded-md justify-center items-center cursor-pointer border-2 hover:border-green-600"
                   onClick={() => handleOptionClick("yes")}
@@ -255,7 +255,7 @@ function Book() {
                   <p className="ml-2 font-Bree text-lg">pay full amount</p>
                 </label>
                 <label
-                  className="flex bg-white px-4 py-3 rounded-md justify-center items-center ml-[20px] cursor-pointer border-2 hover:border-green-600"
+                  className="flex bg-white px-4 py-3 rounded-md justify-center items-center md:ml-[20px] cursor-pointer border-2 hover:border-green-600"
                   onClick={() => handleOptionClick("no")}
                 >
                   <input
@@ -270,17 +270,19 @@ function Book() {
                   </p>
                 </label>
               </div>
-              <div className="flex font-Bree text-[#1D233B] text-xl mt-[10px] md:w-[60% w-[90%]">
-                • Pay Full Amount and get 5% Instant Discount.
-              </div>
-              <div className="flex font-Bree text-[#1D233B] text-xl mt-[10px] md:w-[60% w-[90%]">
-                • Pay 30% to reserve your company.
-              </div>
-              <div className="flex font-Bree text-[#1D233B] text-md mt-[10px] md:w-[60% w-[90%]">
-                • pay 50% after name confirmation
-              </div>
-              <div className="flex font-Bree text-[#1D233B] text-md mt-[10px] md:w-[60% w-[90%]">
-                • Pay the remaining 20% after incorporation.
+              <div className="flex flex-col pl-8 pt-4">
+                <div className="flex font-Bree text-[#1D233B] text-xl mt-[10px] md:w-[60% w-[90%]">
+                  • Pay Full Amount and get 5% Instant Discount.
+                </div>
+                <div className="flex font-Bree text-[#1D233B] text-xl mt-[10px] md:w-[60% w-[90%]">
+                  • Pay 30% to reserve your company.
+                </div>
+                <div className="flex font-Bree text-[#1D233B] text-md mt-[10px] md:w-[60% w-[90%]">
+                  • pay 50% after name confirmation
+                </div>
+                <div className="flex font-Bree text-[#1D233B] text-md mt-[10px] md:w-[60% w-[90%]">
+                  • Pay the remaining 20% after incorporation.
+                </div>
               </div>
 
               {clientSecret != "" && (
@@ -289,16 +291,16 @@ function Book() {
             </div>
           </div>
           <div className="flex md:w-[50%]">
-            <div className="flex flex-col mt-12 m-12 w-full p-4 rounded-2xl bg-white items-start justify-start ml-12">
+            <div className="flex flex-col mt-12 md:m-12 w-full p-4 rounded-2xl bg-white items-start justify-start md:ml-12 m-4">
               {cartItems.map((item, index) => (
                 <div
                   key={index}
-                  className="flex font-Bree text-[#1D233B] text-xl mt-[10px] w-full"
+                  className="flex md:flex-row flex-col gap-x-2 gap-y-2 md:mt-[10px] mt-[20px] font-Bree text-[#1D233B] text-xl w-full"
                 >
                   <div className="flex">{item.productName}</div>
 
                   {["12", "13", "19", "20"].includes(item.productId) && (
-                    <div className="flex ms-4 border-1 border-black rounded px-2 ">
+                    <div className="flex w-[80px] justify-center items-center md:ms-4 border-1 border-black rounded px-2 ">
                       <div style={{ display: "flex ", alignItems: "center" }}>
                         <button
                           onClick={() =>
@@ -321,21 +323,21 @@ function Book() {
                     </div>
                   )}
                   <div className="flex flex-grow"></div>
-                  <div className="flex">${item.price}</div>
+                  <div className="flex md:mt-0 mt-[-10px]">${item.price}</div>
                 </div>
               ))}
 
               <div className="flex h-[1px] w-full bg-zinc-300 mt-[30px]"></div>
-              <div className="bg-black rounded-md pr-4 mt-2">
+              <div className="flex flex-row bg-black rounded-md pr-4 mt-2 w-full">
                 <input
                   type="text"
                   placeholder="Enter coupon code"
                   value={couponCode}
-                  className="px-4 py-2 border-1 border-black rounded-md"
+                  className="px-4 py-2 border-1 border-black rounded-md w-full"
                   onChange={(e) => setCouponCode(e.target.value)}
                 />
-                <button onClick={handleDiscount} className="text-white ml-4">
-                  Apply Coupon
+                <button onClick={handleDiscount} className="text-white ml-4 w-[100px]">
+                  Apply
                 </button>
               </div>
               <div className="flex h-[1px] w-full bg-zinc-300 mt-[10px]"></div>

@@ -167,7 +167,8 @@ function Months() {
       localStorage.setItem("selectedProducts", JSON.stringify([]));
       const redirect_val = localStorage.getItem("res");
       console.log(redirect_val);
-      window.location.href = (redirect_val === "true")? "/shareHolder" : "/shareHoldernonResident";
+      window.location.href =
+        redirect_val === "true" ? "/shareHolder" : "/shareHoldernonResident";
 
       console.log("back successful", data);
     } catch (error) {
@@ -194,14 +195,14 @@ function Months() {
           allows you to have a physical presence in any city without the bloated
           costs of office space rentals.
         </div>
-        <div className="flex flex-col md:w-[70%] w-full gap-y-8 md:justify-evenly justify-center md:items-center items-center mt-16">
+        <div className="flex flex-col md:w-[70%] w-screen gap-y-8 md:justify-evenly justify-center md:items-center items-center mt-16">
           <div className="flex md:flex-row flex-col justify-evenly gap-x-12 gap-y-4">
             <div
               className="flex justify-center items-center"
               onClick={() => handleOptionClick("1")}
             >
               <div
-                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-3 cursor-pointer ${
+                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[350px] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-3 cursor-pointer ${
                   selectedOption === "1"
                     ? "border-[#0C9663] bg-[#d6ffcf]"
                     : "border-[#F4FCF3] bg-[#F4FCF3]"
@@ -222,7 +223,7 @@ function Months() {
                 <img
                   src="img/mail5.png"
                   alt="back"
-                  className="w-[150px] cursor-pointer m-4 ml-8"
+                  className="md:w-[150px] w-[120px] cursor-pointer m-4 ml-8"
                 />
               </div>
             </div>
@@ -232,7 +233,7 @@ function Months() {
               onClick={() => handleOptionClick("2")}
             >
               <div
-                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-3 cursor-pointer ${
+                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[350px] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-3 cursor-pointer ${
                   selectedOption === "2"
                     ? "border-[#0C9663] bg-[#e7ffe3]"
                     : "border-[#F4FCF3] bg-[#F4FCF3]"
@@ -253,19 +254,19 @@ function Months() {
                 <img
                   src="img/mail5.png"
                   alt="back"
-                  className="w-[150px] cursor-pointer m-4 ml-8"
+                  className="md:w-[150px] w-[120px] cursor-pointer m-4 ml-8"
                 />
               </div>
             </NavLink>
           </div>
 
-          <div className="flex md:flex-row flex-col gap-x-12">
+          <div className="flex md:flex-row flex-col justify-evenly gap-x-12 gap-y-4">
             <NavLink
               className="flex justify-center items-center"
               onClick={() => handleOptionClick("3")}
             >
               <div
-                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-3 cursor-pointer ${
+                className={`flex flex-row bg-[#F4FCF3] rounded-xl md:w-[400px] w-[350px] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-3 cursor-pointer ${
                   selectedOption === "3"
                     ? "border-[#0C9663] bg-[#e7ffe3]"
                     : "border-[#F4FCF3] bg-[#F4FCF3]"
@@ -286,7 +287,7 @@ function Months() {
                 <img
                   src="img/mail20.png"
                   alt="back"
-                  className="w-[150px] cursor-pointer m-4 ml-8"
+                  className="md:w-[150px] w-[120px] cursor-pointer m-4 ml-8"
                 />
               </div>
             </NavLink>
@@ -296,7 +297,7 @@ function Months() {
               onClick={() => handleOptionClick("4")}
             >
               <div
-                className={`flex flex-row bg-[#F4FCF3] h-[170px] rounded-xl md:w-[400px] w-[90%] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-3 cursor-pointer ${
+                className={`flex flex-row bg-[#F4FCF3] h-[170px] rounded-xl md:w-[400px] w-[350px] justify-center items-center hover:shadow-lg shadow-md shadow-[#33f28c4f] hover:border-[#0C9663] border-3 cursor-pointer ${
                   selectedOption === "4"
                     ? "border-[#0C9663] bg-[#e7ffe3]"
                     : "border-[#F4FCF3] bg-[#F4FCF3]"
