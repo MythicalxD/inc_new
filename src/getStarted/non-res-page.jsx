@@ -174,7 +174,7 @@ function NonResidentPage() {
           className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
         />
       </div>
-      <div className="bg-[#F6FAFD] md:h-[130vh] h-[170vh] flex flex-col items-center">
+      <div className="bg-[#F6FAFD] md:h-[130vh] h-[200vh] flex flex-col items-center">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           Please Select your province
         </div>
