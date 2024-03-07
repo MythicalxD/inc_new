@@ -174,7 +174,7 @@ function NonResidentPage() {
           className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
         />
       </div>
-      <div className="bg-[#F6FAFD] md:h-[130vh] h-[200vh] flex flex-col items-center">
+      <div className="bg-[#F6FAFD] md:h-[130vh] h-[220vh] flex flex-col items-center">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           Please Select your province
         </div>
@@ -183,7 +183,7 @@ function NonResidentPage() {
         </div>
         <div className="flex md:flex-row flex-col h-[400px]">
           <div className="flex md:w-[55vw] items-center md:mt-16 mt-[130px] md:ml-[20px] h-full">
-            <div className="flex flex-wrap mt-[100px]">
+            <div className="flex flex-wrap mt-[250px]">
               <div
                 className={`flex flex-col h-[180px] w-[330px] m-4 p-4 bg-[#F4FCF3] rounded-lg shadow hover:border-green-700 border-2 cursor-pointer ${
                   selectedCountry === "1"
@@ -292,7 +292,7 @@ function NonResidentPage() {
               )}
             </div>
           </div>
-          <div className="flex h-[150%] w-[1px] bg-zinc-300 mr-[70px] ml-[40px] mt-[50px]"></div>
+          <div className="flex h-[150%] w-[1px] bg-zinc-300 mr-[70px] ml-[40px] mt-[200px]"></div>
           <div className="flex md:w-[30vw] md:mt-12 mt-[180px]">
             <div className="flex flex-col m-4">
               <div className="flex font-Bree text-[#1D233B] text-lg mt-[10px] justify-center text-start">

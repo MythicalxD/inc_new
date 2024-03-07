@@ -177,14 +177,14 @@ function ResidentPage() {
           className="w-[60px] absolute top-[109px] left-0 cursor-pointer"
         />
       </div>
-      <div className="bg-[#F6FAFD] min-h-screen md:h-[130vh] h-[200vh] flex flex-col items-center">
+      <div className="bg-[#F6FAFD] min-h-screen md:h-[130vh] h-[220vh] flex flex-col items-center">
         <div className="flex font-Bree text-[#0C9663] font-semibold text-3xl mt-[50px] text-center">
           Please Select your province
         </div>
         <div className="flex font-Bree text-[#1D233B] text-xl mt-[10px] md:w-[60% w-[90%] justify-center text-center">
           Confirm where your business is located.
         </div>
-        <div className="flex md:flex-row flex-col h-[400px] mt-[50px]">
+        <div className="flex md:flex-row flex-col h-[400px] mt-[120px]">
           <div className="flex md:w-[55vw] items-center md:mt-16 mt-[130px] md:ml-[20px] h-full">
             <div className="flex flex-wrap">
               <div
@@ -295,7 +295,7 @@ function ResidentPage() {
               )}
             </div>
           </div>
-          <div className="flex h-[150%] w-[1px] bg-zinc-300 mr-[70px] ml-[40px] mt-[50px]"></div>
+          <div className="flex h-[150%] w-[1px] bg-zinc-300 mr-[70px] ml-[40px] mt-[130px]"></div>
           <div className="flex md:w-[30vw] md:mt-12 mt-[120px]">
             <div className="flex flex-col md:m-0 m-8">
               <div className="flex font-Bree text-[#1D233B] text-lg mt-[10px] justify-center text-start">
