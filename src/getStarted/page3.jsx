@@ -33,7 +33,7 @@ function StakeHolder() {
   // Define state to hold the selected value
   const [selectedValue, setSelectedValue] = useState(""); // 13
   const [selectedValue1, setSelectedValue1] = useState(""); // 14
-  const [selectedValue2, setSelectedValue2] = useState(""); // none
+  // const [selectedValue2, setSelectedValue2] = useState(""); // none
   const [selectedValue3, setSelectedValue3] = useState(""); // 13
 
   const [price, setPrice] = useState(
@@ -51,16 +51,20 @@ function StakeHolder() {
   };
 
   const handleSelectChange1 = (event) => {
+    price1 = 0;
+    price3 = 0;
+    setSelectedValue3("");
+    setSelectedValue("");
     setSelectedValue1(event.target.value);
     price2 = parseInt(event.target.value);
     calcAmount();
   };
 
-  const handleSelectChange2 = (event) => {
-    setSelectedValue2(event.target.value);
-    price3 = 0;
-    calcAmount();
-  };
+  // const handleSelectChange2 = (event) => {
+  //   setSelectedValue2(event.target.value);
+  //   price3 = 0;
+  //   calcAmount();
+  // };
 
   const handleSelectChange3 = (event) => {
     setSelectedValue3(event.target.value);
@@ -70,44 +74,57 @@ function StakeHolder() {
 
   const calcAmount = () => {
     console.log(price1, price2, price3);
-    if (selectedValue2 === "no") {
-      setPriceNew(price + price1 + price2 + price3);
+    if (selectedValue1 === "750") {
+      setPriceNew(price + price2 + price3);
     } else {
-      setPriceNew(price + price1 + price2);
+      setPriceNew(price + price2 + price1);
     }
   };
 
   const handleSubmit = async () => {
-    if (
-      selectedValue === "" ||
-      selectedValue1 === "" ||
-      selectedValue2 === ""
-    ) {
+    if (selectedValue1 === "") {
+      console.log("option 1 empty");
       return;
+    } else {
+      if (selectedValue3 === "" && selectedValue1 === "750") {
+        console.log("option 1.2 empty");
+        return;
+      }
+      if (selectedValue === "" && selectedValue1 === "0") {
+        console.log("option 1.3 empty");
+        return;
+      }
     }
 
-    if (selectedValue2 === "no" && selectedValue3 === "") {
-      return;
-    }
     localStorage.setItem("selectedProducts", JSON.stringify([]));
 
-    const selectedProducts =
-      JSON.parse(localStorage.getItem("selectedProducts")) || [];
-    const updatedProducts = [
-      ...selectedProducts,
-      { productId: "13", quantity: parseInt(selectedValue) },
-    ];
-    localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
-    if (selectedValue1 === "750") {
+    if (selectedValue1 === "0") {
       const selectedProducts =
         JSON.parse(localStorage.getItem("selectedProducts")) || [];
       const updatedProducts = [
         ...selectedProducts,
-        { productId: "14", quantity: 1 },
+        { productId: "13", quantity: parseInt(selectedValue) },
       ];
       localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+      // const selectedProducts =
+      //   JSON.parse(localStorage.getItem("selectedProducts")) || [];
+      // const updatedProducts = [
+      //   ...selectedProducts,
+      //   { productId: "13", quantity: 1 },
+      // ];
+      // localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
     }
-    if (selectedValue2 === "no") {
+    if (selectedValue1 === "750") {
+      const selectedProducts1 =
+        JSON.parse(localStorage.getItem("selectedProducts")) || [];
+      const updatedProducts1 = [
+        ...selectedProducts1,
+        { productId: "14", quantity: 1 },
+      ];
+      localStorage.setItem(
+        "selectedProducts",
+        JSON.stringify(updatedProducts1)
+      );
       const selectedProducts =
         JSON.parse(localStorage.getItem("selectedProducts")) || [];
       const updatedProducts = [
@@ -216,37 +233,13 @@ function StakeHolder() {
         </div>
         <div className="flex md:flex-row flex-col md:w-[60%] gap-y-4 md:justify-evenly justify-center md:items-start items-center mt-16">
           <div className="flex flex-col">
-            <div className="flex flex-col justify-start items-start">
-              <div className="flex font-Bree text-[#1D233B] text-xl mt-[10px] ">
-                Number of Shareholders
-              </div>
-              <div className="flex font-Bree text-[#42475b] text-md mt-[10px]">
-                We are required to run a through one time background check of a
-                non-Canadian shareholders. One time fee of $350 CAD will be
-                incurred.
-              </div>
-              <select
-                id="dropdown"
-                value={selectedValue}
-                onChange={handleSelectChange}
-                className="w-[300px] rounded shadow-sm p-2 mt-4"
-              >
-                <option value="">Select...</option>
-                <option value="1">1x $150 CAD</option>
-                <option value="2">2x $150 CAD</option>
-                <option value="3">3x $150 CAD</option>
-                <option value="4">4x $150 CAD</option>
-              </select>{" "}
-            </div>
             <div className="flex flex-col justify-start items-start mt-4">
               <div className="flex font-Bree text-[#1D233B] text-xl mt-[10px] ">
-                Is Shareholder Corporate?
+                Who is the Shareholder?
               </div>
               <div className="flex font-Bree text-[#42475b] text-md mt-[10px]">
-                If the shareholder of a Canadian corporation is another
-                corporate entity, additional documents such as the incorporation
-                certificate and articles of incorporation need to be legally
-                verified.
+                We are required to know type of the shareholder. One time fee of
+                $750 CAD will be incurred for corporate shareholder.
               </div>
               <select
                 id="dropdown1"
@@ -255,28 +248,12 @@ function StakeHolder() {
                 className="w-[300px] rounded shadow-sm p-2 mt-2"
               >
                 <option value="">Select...</option>
-                <option value="750">yes +750 CAD</option>
-                <option value="0">no</option>
+                <option value="750">Corporate +750 CAD</option>
+                <option value="0">Individual</option>
               </select>
             </div>
 
-            <div className="flex flex-col justify-start items-start mt-4">
-              <div className="flex font-Bree text-[#1D233B] text-xl mt-[10px] ">
-                Is Director Same as Shareholder?
-              </div>
-              <select
-                id="dropdown2"
-                value={selectedValue2}
-                onChange={handleSelectChange2}
-                className="w-[300px] rounded shadow-sm p-2 mt-2"
-              >
-                <option value="">Select...</option>
-                <option value="yes">yes</option>
-                <option value="no">no</option>
-              </select>
-            </div>
-
-            {selectedValue2 == "no" && (
+            {selectedValue1 === "750" && (
               <div className="flex flex-col justify-start items-start mt-8">
                 <div className="flex font-Bree text-[#1D233B] text-xl mt-[10px] ">
                   Number of Directors:
@@ -293,6 +270,31 @@ function StakeHolder() {
                   <option value="3">3x 150 CAD</option>
                   <option value="4">4x 150 CAD</option>
                 </select>
+              </div>
+            )}
+
+            {selectedValue1 === "0" && (
+              <div className="flex flex-col justify-start items-start mt-8">
+                <div className="flex font-Bree text-[#1D233B] text-xl mt-[10px] ">
+                  Number of Shareholders
+                </div>
+                <div className="flex font-Bree text-[#42475b] text-md mt-[10px]">
+                  We are required to run a through one time background check of
+                  a non-Canadian shareholders. One time fee of $350 CAD will be
+                  incurred.
+                </div>
+                <select
+                  id="dropdown"
+                  value={selectedValue}
+                  onChange={handleSelectChange}
+                  className="w-[300px] rounded shadow-sm p-2 mt-4"
+                >
+                  <option value="">Select...</option>
+                  <option value="1">1x $150 CAD</option>
+                  <option value="2">2x $150 CAD</option>
+                  <option value="3">3x $150 CAD</option>
+                  <option value="4">4x $150 CAD</option>
+                </select>{" "}
               </div>
             )}
 

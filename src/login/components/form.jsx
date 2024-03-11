@@ -65,6 +65,7 @@ function ContactForm() {
       }
 
       const data = await response.json();
+      console.log(data);
       document.cookie = `token=${data.token}; path=/; expires=3600000;`;
       window.location.href = "/resident";
 

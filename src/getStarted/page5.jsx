@@ -181,9 +181,30 @@ function Book() {
     }
   };
 
-  const handleSubmit = async () => {
-    if (selectedOption === "") {
-      return;
+  const upgardeRush = async () => {
+    try {
+      const authToken = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+
+      const response = await fetch(`${API}cart/cart/upgrade`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      fetchData();
+
+      console.log(clientSecret);
+    } catch (error) {
+      console.error("Error during checkout:", error);
     }
   };
 
@@ -322,6 +343,16 @@ function Book() {
                       </div>
                     </div>
                   )}
+                  {["1"].includes(item.productId) && (
+                    <div
+                      onClick={upgardeRush}
+                      className="mt-0 py-1 px-2 text-xs bg-gray-100 hover:bg-gray-200 border-[2px] border-gray-700 rounded-md flex justify-center items-center"
+                    >
+                      <button className="text-zinc-600 w-[200px]">
+                        Upgrade to Rush Incorporation
+                      </button>
+                    </div>
+                  )}
                   <div className="flex flex-grow"></div>
                   <div className="flex md:mt-0 mt-[-10px]">${item.price}</div>
                 </div>
@@ -336,7 +367,10 @@ function Book() {
                   className="px-4 py-2 border-1 border-black rounded-md w-full"
                   onChange={(e) => setCouponCode(e.target.value)}
                 />
-                <button onClick={handleDiscount} className="text-white ml-4 w-[100px]">
+                <button
+                  onClick={handleDiscount}
+                  className="text-white ml-4 w-[100px]"
+                >
                   Apply
                 </button>
               </div>

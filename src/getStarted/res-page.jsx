@@ -187,7 +187,7 @@ function ResidentPage() {
         <div className="flex md:flex-row flex-col h-[400px] mt-[120px]">
           <div className="flex md:w-[55vw] items-center md:mt-16 mt-[130px] md:ml-[20px] h-full">
             <div className="flex flex-wrap">
-              <div
+              {/* <div
                 className={`flex flex-col h-[180px] w-[330px] m-4 p-4 bg-[#F4FCF3] rounded-lg shadow hover:border-green-700 border-2 cursor-pointer ${
                   selectedCountry === "1"
                     ? "border-[#0C9663] bg-[#e7ffe3]"
@@ -213,6 +213,24 @@ function ResidentPage() {
                   <p className="text-[#536174] font-Bree text-sm">
                     Introduction to Canadian Local Banks
                   </p>
+                </div>
+              </div> */}
+              <div
+                className={`flex flex-col h-[180px] w-[330px] m-4 p-4 bg-[#F4FCF3] rounded-lg shadow hover:border-green-700 border-2 cursor-pointer ${
+                  selectedCountry === "1"
+                    ? "border-[#0C9663] bg-[#e7ffe3]"
+                    : "border-[#F4FCF3] bg-[#F4FCF3]"
+                }`}
+                onClick={() => handleCardClick("1")}
+              >
+                <div className="flex">
+                  <div className="font-Bree text-[#1D233B] text-3xl ml-0">
+                    Ontario
+                  </div>
+                </div>
+                <div className="flex items-baseline mt-4">
+                  <p className="text-black font-Bree text-5xl">$499</p>
+                  <p className="text-black font-Bree text-xl ml-2">CAD</p>
                 </div>
               </div>
               <div
