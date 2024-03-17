@@ -56,8 +56,14 @@ function StakeHolder() {
     setSelectedValue3("");
     setSelectedValue("");
     setSelectedValue1(event.target.value);
-    price2 = parseInt(event.target.value);
-    calcAmount();
+    if (event.target.value != "") {
+      price2 = parseInt(event.target.value);
+      calcAmount();
+    } else {
+      price1 = 0;
+      price3 = 0;
+      calcAmount();
+    }
   };
 
   // const handleSelectChange2 = (event) => {
@@ -247,7 +253,7 @@ function StakeHolder() {
                 onChange={handleSelectChange1}
                 className="w-[300px] rounded shadow-sm p-2 mt-2"
               >
-                <option value="" disabled selected>Select...</option>
+                <option value="">Select...</option>
                 <option value="750">Corporate +750 CAD</option>
                 <option value="0">Individual</option>
               </select>
