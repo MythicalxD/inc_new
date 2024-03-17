@@ -21,7 +21,7 @@ function Months() {
       price1 = 599;
     } else if (optionValue === "3") {
       price1 = 899;
-    } else if (optionValue === "34") {
+    } else if (optionValue === "4") {
       price1 = 0;
     }
     calcAmount();

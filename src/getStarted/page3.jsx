@@ -247,7 +247,7 @@ function StakeHolder() {
                 onChange={handleSelectChange1}
                 className="w-[300px] rounded shadow-sm p-2 mt-2"
               >
-                <option value="">Select...</option>
+                <option value="" disabled selected>Select...</option>
                 <option value="750">Corporate +750 CAD</option>
                 <option value="0">Individual</option>
               </select>
@@ -264,7 +264,6 @@ function StakeHolder() {
                   onChange={handleSelectChange3}
                   className="w-[300px] rounded shadow-sm p-2 mt-4"
                 >
-                  <option value="">Select...</option>
                   <option value="1">1x 150 CAD</option>
                   <option value="2">2x 150 CAD</option>
                   <option value="3">3x 150 CAD</option>
@@ -280,7 +279,7 @@ function StakeHolder() {
                 </div>
                 <div className="flex font-Bree text-[#42475b] text-md mt-[10px]">
                   We are required to run a through one time background check of
-                  a non-Canadian shareholders. One time fee of $350 CAD will be
+                  a non-Canadian shareholders. One time fee of $150 CAD will be
                   incurred.
                 </div>
                 <select
@@ -289,7 +288,6 @@ function StakeHolder() {
                   onChange={handleSelectChange}
                   className="w-[300px] rounded shadow-sm p-2 mt-4"
                 >
-                  <option value="">Select...</option>
                   <option value="1">1x $150 CAD</option>
                   <option value="2">2x $150 CAD</option>
                   <option value="3">3x $150 CAD</option>

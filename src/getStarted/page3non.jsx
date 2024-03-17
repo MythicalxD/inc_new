@@ -31,10 +31,10 @@ function StakeHolderNonResident() {
   };
 
   // Define state to hold the selected value
-  const [selectedValue, setSelectedValue] = useState(""); // 13
-  const [selectedValue1, setSelectedValue1] = useState(""); // 14
+  const [selectedValue, setSelectedValue] = useState("0"); // 13
+  const [selectedValue1, setSelectedValue1] = useState("0"); // 14
   // const [selectedValue2, setSelectedValue2] = useState(""); // none
-  const [selectedValue3, setSelectedValue3] = useState(""); // 13
+  const [selectedValue3, setSelectedValue3] = useState("0"); // 13
 
   const [price, setPrice] = useState(
     parseInt(localStorage.getItem("total_ca"))
@@ -121,7 +121,10 @@ function StakeHolderNonResident() {
         ...selectedProducts1,
         { productId: "14", quantity: 1 },
       ];
-      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts1));
+      localStorage.setItem(
+        "selectedProducts",
+        JSON.stringify(updatedProducts1)
+      );
       const selectedProducts =
         JSON.parse(localStorage.getItem("selectedProducts")) || [];
       const updatedProducts = [
@@ -243,7 +246,7 @@ function StakeHolderNonResident() {
                 onChange={handleSelectChange1}
                 className="w-[300px] rounded shadow-sm p-2 mt-2"
               >
-                <option value="">Select...</option>
+                <option value="" disabled selected>Select...</option>
                 <option value="750">Corporate +750 CAD</option>
                 <option value="0">Individual</option>
               </select>
@@ -260,7 +263,6 @@ function StakeHolderNonResident() {
                   onChange={handleSelectChange3}
                   className="w-[300px] rounded shadow-sm p-2 mt-4"
                 >
-                  <option value="">Select...</option>
                   <option value="1">1x 350 CAD</option>
                   <option value="2">2x 350 CAD</option>
                   <option value="3">3x 350 CAD</option>
@@ -285,7 +287,6 @@ function StakeHolderNonResident() {
                   onChange={handleSelectChange}
                   className="w-[300px] rounded shadow-sm p-2 mt-4"
                 >
-                  <option value="">Select...</option>
                   <option value="1">1x $350 CAD</option>
                   <option value="2">2x $350 CAD</option>
                   <option value="3">3x $350 CAD</option>
